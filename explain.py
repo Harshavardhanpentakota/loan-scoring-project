@@ -26,7 +26,7 @@ LLMProvider = OpenAICompatibleProvider
 
 from prompts.template_manager import TemplateManager
 from llm_utils import initialize_llm_provider, extract_json_from_response
-from prompt import DEFAULT_MODEL, MODEL_PARAMETERS
+from config import DEFAULT_MODEL, MODEL_PARAMETERS
 
 logger = logging.getLogger(__name__)
 

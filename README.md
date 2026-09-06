@@ -1,362 +1,347 @@
-# Hiring Agent
+# 🏦 Loan Underwriting & Scoring Agent
 
-<p align="center"><strong>Resume-to-Score pipeline</strong> that extracts structured data from PDFs, enriches with GitHub signals, and outputs a fair, explainable evaluation.</p>
+[![Deterministic Scoring](https://img.shields.io/badge/Scoring-Deterministic%20100%25-brightgreen)](scoring.py)
+[![Policy Gates](https://img.shields.io/badge/Policy-Configurable%20Gates-blue)](loan_products/)
+[![Tests](https://img.shields.io/badge/Tests-22%2F22%20Passing-success)](run_tests.py)
+[![Sample PDF Report](https://img.shields.io/badge/Output-result.pdf%20(8%20Pages)-crimson?logo=adobe-acrobat-reader)](result.pdf)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-<p align="center">
-  <a href="https://www.python.org/downloads/release/python-3110/">
-    <img alt="Python" src="https://img.shields.io/badge/python-3.11%2B-blue.svg">
-  </a>
-  <a href="https://github.com/interviewstreet/hiring-agent/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-yellow.svg">
-  </a>
-  <a href="https://github.com/psf/black">
-    <img alt="Code style: Black" src="https://img.shields.io/badge/code%20style-Black-000000.svg">
-  </a>
-</p>
+**Loan Underwriting & Scoring Agent** is an automated credit assessment platform that evaluates loan applicants from raw financial PDF documents (bank statements, pay slips, credit bureau reports, and tax filings).
 
----
-
-## Contents
-
-- [Context and intent](#context-and-intent)
-- [Coverage](#coverage)
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Installation and Setup](#installation-and-setup)
-  - [Prerequisites](#prerequisites)
-  - [Quick setup with pip](#quick-setup-with-pip)
-  - [Ollama models](#ollama-models)
-- [Configuration](#configuration)
-- [How it works](#how-it-works)
-- [CLI usage](#cli-usage)
-- [Directory layout](#directory-layout)
-- [Provider details](#provider-details)
-- [Contributing](#contributing)
-- [License](#license)
+### 💡 What does this agent do?
+- 📑 **Reads Real Financial Documents**: Extracts applicant data, income proofs, credit scores, and 6 months of itemized bank and credit card transactions directly from PDFs.
+- 🧮 **100% Mathematical & Auditable Scoring**: Eliminates AI hallucination and score variance. Credit scores (0–100) are computed using transparent deterministic formulas and versioned product policies.
+- 🚪 **Enforces Policy Gates**: Automatically checks eligibility rules (such as minimum CIBIL score, maximum debt-to-income ratio, and mandatory KYC documents) and flags ineligible profiles with clear rejection reasons.
+- 🤖 **Parallel AI Executive Summaries**: Uses an LLM to generate plain-English underwriting verdicts and highlights strengths (**Pros**) and risk factors (**Cons**) tagged by criticality (`HIGH`, `MED`, `LOW`).
+- 🏆 **Ranks Applicant Portfolios**: Sorts applicants into an executive **Portfolio Leaderboard** (Rank 1 to $N$) and an **Ineligible Queue**.
+- 📄 **Generates Complete Dossier Reports**: Exports publication-ready PDF reports with full calculation traces and transaction rollups.
 
 ---
 
-## Context and intent
-
-This project got a lot of attention recently, and some of the discussion surfaced misconceptions worth addressing directly.
-
-**What this is not:**
-- Not an ATS (Applicant Tracking System)
-- Not used to screen HackerRank's open roles
-- Not a product available to HackerRank customers
-
-**What it actually is:**
-
-Every year HackerRank receives 50,000–60,000 intern applications. No human can read that many resumes well. This tool was built to *rank* them — helping decide which resumes to read first. Resumes scoring below the cutoff are filtered out, but the cutoff is intentionally set very low so only candidates at the very bottom of the distribution are removed. The vast majority pass through to human review, where the real decisions are made.
-
-Since this was built, HackerRank has also shipped [AI Interviewer (Chakra)](https://www.hackerrank.com/products/ai-interviewer/) to automate the first round of interviews — so candidates are no longer assessed on their resume alone.
-
-**On the default model:**
-
-The repo ships with `gemma4:latest` as the default because it runs locally on most laptops without any cloud API key. Actual intern resumes at HackerRank are evaluated using a top-tier Gemini model. The repo ships with a demo config, not the production one.
+> 📄 **Live Portfolio Report**: Download or inspect the sample underwriting report: **[`result.pdf`](result.pdf)** (8-page dossier featuring the portfolio leaderboard, 7 applicant dossiers, 6-month transaction rollups, and LLM evaluations).
 
 ---
 
-## Coverage
+## 📑 Table of Contents
 
-Articles and discussions that have shaped how we think about improving this project:
-
-| Article | Key takeaway |
-|---|---|
-| [HackerRank open sourced its ATS. My resume scored 90/100. Oh wait 74/100. No — 88/100. Actually 83/100.](https://danunparsed.com/p/hackerrank-open-source-ats) — *Dan Kinsky* | Deep statistical analysis of score variance across 100 runs of the same resume. Isolates which categories are stable (technical skills) vs. noisy (project quality judgments). Points to LLM non-determinism as the root cause. |
-| [The Score Depends on the Roll of the Dice](https://pinggy.io/blog/hackerrank_open_source_ats_inconsistent_scoring/) — *Pinggy Blog* | Reproduces the variance findings and surfaces a security issue: invisible text embedded in PDFs can inflate scores significantly. |
-| [The Hiring Rubric Inside](https://byteiota.com/hackerrank-ats-open-source-the-hiring-rubric-inside/) — *ByteIota* | Breaks down the scoring weights and argues that a GitHub-centric rubric disadvantages engineers whose work is in private enterprise repos. Also notes the signal degradation risk as candidates optimize for the now-public rubric. |
-| [Analyzing resume scoring consistency](https://dev.to/mgobea/hackerrank-open-sourced-its-ats-analyzing-resume-scoring-consistency-1j5d) — *Mariano Gobea Alcoba, DEV Community* | Proposes concrete fixes: standardized data formats, versioned evaluation models, ensemble scoring, and explainability layers to reduce variance and make the system more robust. |
-| [AI-Powered Pipeline for Explainable Resume Scoring](https://aitoolly.com/ai-news/article/2026-06-26-interviewstreet-unveils-hiring-agent-an-ai-powered-pipeline-for-explainable-resume-scoring-and-githu) — *AIToolly* | Covers the launch and highlights the transparency argument — making scoring logic public allows scrutiny that proprietary ATS systems never face. |
-| [Hacker News discussion](https://news.ycombinator.com/item?id=48713832) | 200+ comment thread covering LLM determinism, GDPR Article 22 implications, and the broader ethics of automated resume filtering. |
-
-**Video coverage**
-
-- [HackerRank Open-Sourced Their ATS?](https://www.youtube.com/shorts/0OP2bhYZQfc) — YouTube Short
-- [HackerRank Open-Sourced ATS Tool for selecting Resume](https://www.youtube.com/shorts/UnHGC1Ywhys) — YouTube Short
-- [HackerRank Custom ATS Released! Get Your Resume Score & Beat ATS Filters](https://www.youtube.com/watch?v=tQSve-xx4_8) — full walkthrough video
-
-**Community tools built on this repo**
-
-- [Resume Reality Check](https://resume-reality-check-seven.vercel.app/) — hosted tool that lets candidates score their own resume against the same rubric
+- [Core Principles & Architectural Guarantee](#-core-principles--architectural-guarantee)
+- [System Architecture](#-system-architecture)
+- [4-Stage Ingestion & Processing Pipeline](#-4-stage-ingestion--processing-pipeline)
+- [Deterministic Scoring Engine & Mathematical Rubric](#-deterministic-scoring-engine--mathematical-rubric)
+- [Policy Gating & Eligibility Engine](#-policy-gating--eligibility-engine)
+- [Parallel LLM Underwriting Evaluation (Pros & Cons by Criticality)](#-parallel-llm-underwriting-evaluation)
+- [Portfolio Leaderboard & Ranking Engine](#-portfolio-leaderboard--ranking-engine)
+- [Executive PDF Dossier Report (`result.pdf`)](#-executive-pdf-dossier-report)
+- [Synthetic PDF Test Scenarios](#-synthetic-pdf-test-scenarios)
+- [Getting Started & Quickstart](#-getting-started--quickstart)
+- [CLI Reference](#-cli-reference)
+- [Automated 4-Layer Test Suite](#-automated-4-layer-test-suite)
+- [Lineage & Copyright Notice](#-lineage--copyright-notice)
 
 ---
 
-## Overview
+## 🎯 Core Principles & Architectural Guarantee
 
-Hiring Agent parses a resume PDF to Markdown, extracts sectioned JSON using a local or hosted LLM, augments the data with GitHub profile and repository signals, then produces an objective evaluation with category scores, evidence, bonus points, and deductions. You can run fully local with Ollama or use Google Gemini.
+In credit underwriting, **non-deterministic scores and hallucinatory policy decisions are unacceptable**. Traditional LLM-as-judge implementations produce high score variance across identical applicant inputs and can be vulnerable to prompt injection or hallucinated figures.
 
----
+This system guarantees **100% mathematical reproducibility**:
 
-## Architecture
+$$\text{PDF Documents} \longrightarrow \text{Strict Extraction} \longrightarrow \text{Validation} \longrightarrow \text{Feature Rollups} \longrightarrow \text{Policy Gating} \longrightarrow \text{Deterministic Scoring} \longrightarrow \text{Leaderboard Ranking}$$
 
-<table>
-<tr>
-<td>
-
-**Flow**
-
-1. `pymupdf_rag.py` converts PDF pages to Markdown-like text.
-2. `pdf.py` calls the LLM per section using Jinja templates under `prompts/templates`.
-3. `github.py` fetches profile and repos, classifies projects, and asks the LLM to select the top 7.
-4. `evaluator.py` runs a strict-scored evaluation with fairness constraints.
-5. `score.py` orchestrates everything end to end and writes CSV when development mode is on.
-
-</td>
-<td>
-
-**Key modules**
-
-- `models.py`
-  Pydantic schemas and LLM provider interfaces.
-
-- `llm_utils.py`
-  Provider initialization and response cleanup.
-
-- `transform.py`
-  Normalization from loose LLM JSON to JSON Resume style.
-
-- `prompts/`
-  All Jinja templates for extraction and scoring.
-
-</td>
-</tr>
-</table>
+### The Boundary of the LLM:
+1. **Document Fact Extraction**: Extracts verbatim figures from documents with mandatory source attribution (`document`, `page`, and `verbatim_quote`). Missing values strictly remain `null` (never silently substituted with zero).
+2. **Parallel Grounded Evaluation**: Generates executive underwriting verdicts and categorizes pros/cons by criticality (`HIGH`, `MED`, `LOW`). Code validators verify that all financial metrics mentioned in explanations exist within the deterministic trace.
+3. **Zero Influence on Numerical Ranks**: The LLM **cannot** alter numeric scores, adjust weights, or change portfolio ranks.
 
 ---
 
-## Installation and Setup
+## 🏗️ System Architecture
 
-### Prerequisites
+```
+                                  MULTI-PAGE FINANCIAL PDF DOSSIER
+                                (Bank Statements, Tax Returns, ITR,
+                               Credit Bureau, Pay Slips, Loan Form)
+                                                │
+                                                ▼
+                             ┌──────────────────────────────────────┐
+                             │    STAGE 1: EXTRACTION (extract.py)  │
+                             │  • LLM / PyMuPDF text & tables       │
+                             │  • Ground truth NEVER used as input  │
+                             └──────────────────┬───────────────────┘
+                                                ▼
+                             ┌──────────────────────────────────────┐
+                             │      STAGE 2: PARSING (models.py)    │
+                             │  • Typed Pydantic models             │
+                             │  • SourceEvidence citations          │
+                             └──────────────────┬───────────────────┘
+                                                ▼
+                             ┌──────────────────────────────────────┐
+                             │    STAGE 3: REFINING (validate.py)   │
+                             │  • Currency & range sanity checks    │
+                             │  • Cross-document coherence (ITR/Pay)│
+                             │  • Itemized 6M transaction parsing   │
+                             └──────────────────┬───────────────────┘
+                                                ▼
+                             ┌──────────────────────────────────────┐
+                             │   STAGE 4: CALCULATING (features.py) │
+                             │  • DTI, EMI-to-income, LTI ratios    │
+                             │  • 6M Bank credits, debits, salary   │
+                             │  • Credit card utilization & spends  │
+                             └──────────────────┬───────────────────┘
+                                                │
+                     ┌──────────────────────────┴──────────────────────────┐
+                     ▼                                                     ▼
+     ┌───────────────────────────────┐                     ┌───────────────────────────────┐
+     │ POLICY ENGINE (eligibility.py)│                     │  SCORING ENGINE (scoring.py)  │
+     │ • Product JSON policy gates   │                     │  • Pure mathematical functions│
+     │ • Min Bureau Score (e.g. 600) │                     │  • Linear & stepwise mappings │
+     │ • Max DTI (e.g. 50%)          │                     │  • Fully auditable trace      │
+     │ • Delinquency cutoffs         │                     │  • Criticality: LOW/MED/HIGH  │
+     └───────────────┬───────────────┘                     └───────────────┬───────────────┘
+                     │                                                     │
+                     └──────────────────────────┬──────────────────────────┘
+                                                ▼
+                             ┌──────────────────────────────────────┐
+                             │     RANKING ENGINE (ranking.py)      │
+                             │  • Multi-key deterministic sort      │
+                             │  • Qualified Leaderboard (1..N)      │
+                             │  • Ineligible Queue (Policy Failures)│
+                             └──────────────────┬───────────────────┘
+                                                │
+                     ┌──────────────────────────┴──────────────────────────┐
+                     ▼                                                     ▼
+     ┌───────────────────────────────┐                     ┌───────────────────────────────┐
+     │ LLM EVALUATION (explain.py)   │                     │   REPORTING (generate_pdf.py) │
+     │ • Parallel multithreaded run  │                     │  • Executive PDF Dossiers     │
+     │ • Executive Verdict           │                     │  • Portfolio Leaderboard      │
+     │ • Pros & Cons by Criticality  │                     │  • Component Score Tables     │
+     │ • Grounding validation checks │                     │  • 6M Financial Rollups       │
+     └───────────────────────────────┘                     └───────────────────────────────┘
+```
 
-- **Python 3.11+**
+---
 
-  The repository pins `.python-version` to 3.11.13.
+## ⚙️ 4-Stage Ingestion & Processing Pipeline
 
-- **One LLM backend** (either of them)
+The ingestion pipeline strictly decouples input processing from post-scoring verification:
 
-  - **Ollama** for local models
-    Install from the [official site](https://ollama.com/), then run `ollama serve`.
-  - **Google Gemini** if you have an API key, get it from [here](https://aistudio.google.com/api-keys).
+| Stage | Module | Responsibility |
+|---|---|---|
+| **1. EXTRACTION** | `extract.py`, `pdf_loader.py` | Extracts facts and tables from PDF pages using Jinja prompt templates (`loan_extraction.jinja`) or deterministic rule-based table parsers. `ground_truth.json` is never read as input. |
+| **2. PARSING** | `models.py`, `pdf_loader.py` | Populates typed Pydantic models (`LoanApplication`, `ExtractedField[T]`, `SourceEvidence`) retaining page numbers, document names, and verbatim quotes. |
+| **3. REFINING** | `validate.py` | Validates data consistency: checks bounds (credit score $\in [300, 900]$, DTI $\ge 0$), currency uniformity, net vs. gross sanity, and cross-document reconciliation (e.g. pay slip monthly income $\times 12$ vs Form 16 / ITR). |
+| **4. CALCULATING** | `features.py`, `scoring.py`, `eligibility.py` | Aggregates 6-month statement transactions, derives debt ratios, evaluates product eligibility gates, and calculates weighted component scores. |
 
-### Quick setup with pip
+---
 
+## 🧮 Deterministic Scoring Engine & Mathematical Rubric
+
+The scoring engine in [`scoring.py`](scoring.py) uses pure mathematical functions without floating-point drift or external heuristics:
+
+$$\text{Final Score} = \sum_{i=1}^{N} \left( \text{Raw Score}_i \times \text{Weight}_i \right)$$
+
+### Standard Personal Loan Model (`personal_loan_v1`):
+
+| Component | Weight | Mathematical Function | Scoring Schedule |
+|---|---|---|---|
+| **Credit History** | 25% | `calculate_credit_score_rating` | Linear scale: $100 \times \frac{\text{CIBIL} - 300}{900 - 300}$ |
+| **Repayment Behavior** | 20% | `calculate_repayment_behavior_score` | $100 - (30 \times \text{Missed Payments}) - (20 \text{ if Overdue} > 0)$ (min: 5.0) |
+| **Income Stability** | 15% | `calculate_income_stability_score` | Tenure base score + 6M bank payroll deposit variance penalty |
+| **Debt Burden (DTI)** | 15% | `calculate_debt_burden_score` | Stepwise: $\le 20\% \to 100$, $\le 35\% \to 85$, $\le 45\% \to 60$, $\le 55\% \to 25$, $> 55\% \to 10$; revolving CC utilization modifier |
+| **Employment Stability**| 10% | `calculate_employment_stability_score`| $\ge 5\text{ yrs} \to 100$, $\ge 3\text{ yrs} \to 80$, $\ge 1\text{ yr} \to 60$, $< 1\text{ yr} \to 40$ |
+| **Affordability** | 10% | `calculate_affordability_score` | Proposed EMI-to-income: $\le 20\% \to 100$, $\le 35\% \to 80$, $\le 50\% \to 50$, $> 50\% \to 20$; surplus cash flow buffer |
+| **Documentation Quality**| 5% | `calculate_documentation_quality_score`| Verified documents $\div$ Mandatory required documents $\times 100$ |
+
+### Application Criticality Classification:
+- **🟢 LOW CRITICALITY (Prime Grade / Low Risk)**: Score $\ge 80$, 0 missed payments, 0 overdue, DTI $\le 35\%$, CIBIL $\ge 720$.
+- **🟡 MED CRITICALITY (Moderate Risk / Standard)**: Score $\ge 60$, $\le 1$ missed payment, DTI $\le 45\%$, CIBIL $\ge 650$.
+- **🔴 HIGH CRITICALITY (High Risk / Subprime)**: Score $< 60$, multiple missed payments, active overdue balance, or severe debt saturation.
+
+---
+
+## 🚪 Policy Gating & Eligibility Engine
+
+Scoring is decoupled from policy eligibility. Products are declared via versioned JSON files in `loan_products/`:
+
+```json
+{
+  "product_id": "personal_loan_v1",
+  "min_credit_score": 600,
+  "max_dti": 0.50,
+  "max_emi_to_income": 0.50,
+  "max_missed_payments_12m": 2,
+  "mandatory_documents": [
+    "IDENTITY_VERIFIED",
+    "INCOME_PROOF_VERIFIED",
+    "BANK_STATEMENT_VERIFIED"
+  ]
+}
+```
+
+Applicants who breach hard policy gates (such as severe delinquencies, credit score below 600, or missing KYC) are segregated into the **Ineligible Queue** with explicit reason codes (e.g., `CREDIT_SCORE_BELOW_THRESHOLD`, `MISSING_MANDATORY_DOC_IDENTITY_VERIFIED`), regardless of secondary metrics.
+
+---
+
+## 🤖 Parallel LLM Underwriting Evaluation
+
+In parallel with mathematical scoring, the LLM (`explain.py`) generates a structured underwriting evaluation:
+1. **Executive Underwriting Verdict**: A concise 1–2 sentence synthesis of credit posture.
+2. **Pros (Strengths)**: Tagged with criticality: `[HIGH CRITICALITY]`, `[MED CRITICALITY]`, or `[LOW CRITICALITY]`.
+3. **Cons (Risks & Vulnerabilities)**: Tagged with criticality: `[HIGH CRITICALITY]`, `[MED CRITICALITY]`, or `[LOW CRITICALITY]`.
+4. **Grounding Assertion**: Code validates that figures mentioned in the summary match verified features in the deterministic calculation trace.
+
+---
+
+## 🏆 Portfolio Leaderboard & Ranking Engine
+
+When multiple applicants are evaluated, [`ranking.py`](ranking.py) applies a multi-key deterministic sort:
+$$\text{Sort Key} = (\text{Final Score DESC}, \text{Credit Score DESC}, \text{DTI ASC}, \text{Net Monthly Income DESC}, \text{App ID ASC})$$
+
+### Sample CLI Terminal Output:
+
+```
+==============================================================================================================
+  🏆 FINAL LOAN APPLICATION RANKING & PORTFOLIO LEADERBOARD
+  Model: personal_loan_v1 | Total Applications Evaluated: 7
+==============================================================================================================
+
+  ⭐ QUALIFIED APPLICANTS (Ranked 1 to 5 by Score):
+  ----------------------------------------------------------------------------------------------------------
+  Rank  | App ID                             | Applicant Name     | Score    | Criticality     | Credit   | DTI      | Monthly Net
+  ----------------------------------------------------------------------------------------------------------
+  1     | test1_salaried_good                | Rohan Sharma       | 94.17    | 🟢 LOW RISK      | 784      | 14.4%    | ₹125,000.00
+  2     | test3_business_good                | Meera Iyer         | 87.08    | 🟢 LOW RISK      | 770      | N/A      | ₹150,000.00
+  3     | test7_business_moderate_margin   | Amitav Sen         | 78.18    | 🟡 MED RISK      | 680      | 23.5%    | ₹85,000.00
+  4     | test6_salaried_fair_credit_high_cc | Priya Nambiar      | 77.17    | 🟡 MED RISK      | 670      | 12.9%    | ₹62,000.00
+  5     | test5_salaried_moderate_dti        | Vikram Malhotra    | 71.58    | 🟡 MED RISK      | 710      | 22.2%    | ₹72,000.00
+  ----------------------------------------------------------------------------------------------------------
+
+  ❌ INELIGIBLE QUEUE (Failed Policy Gates / Severe Delinquencies):
+  ----------------------------------------------------------------------------------------------------------
+  App ID                   | Applicant Name     | Score    | Criticality     | Primary Gate Failure(s)
+  ----------------------------------------------------------------------------------------------------------
+  test4_business_bad       | Rajesh Gupta       | 40.67    | 🔴 HIGH RISK     | MISSING_MANDATORY_DOC_IDENTITY_VERIFIED
+  test2_salaried_bad       | Karan Malhotra     | 30.52    | 🔴 HIGH RISK     | CREDIT_SCORE_BELOW_THRESHOLD (Got 550, Req 600)
+  ----------------------------------------------------------------------------------------------------------
+==============================================================================================================
+```
+
+---
+
+## 📊 Executive PDF Dossier Report (`result.pdf`)
+
+The agent includes a publication-grade PDF generator ([`scripts/generate_result_pdf.py`](scripts/generate_result_pdf.py)) creating [`result.pdf`](result.pdf):
+
+- **Page 1: Executive Portfolio Summary & Leaderboard**: KPI cards (Evaluated: 7, Qualified: 5, Ineligible: 2, Avg Score: 81.6), full applicant comparison matrix, qualified ranking table, and adverse policy rejection queue.
+- **Pages 2–8: Comprehensive Applicant Dossiers**:
+  - Underwriting decision status, score pill, and risk criticality badge.
+  - Component scoring breakdown table (Component, Raw Score, Weight, Contribution, Audit Trace).
+  - 6-Month statement transaction rollups & financial ratios (credits, debits, verified payroll salary, EMI debits, credit card utilization, spends).
+  - Parallel LLM Underwriting Evaluation (Executive verdict, pros & cons categorized by criticality).
+  - Audit stamp & running pagination ("Page X of 8").
+
+---
+
+## 📁 Synthetic PDF Test Scenarios
+
+The test repository in [`data/pdf_scenarios/`](data/pdf_scenarios/) features realistic PDF scenarios equipped with fantastical bank names and 6 months of itemized transactions:
+
+| Scenario Directory | Profile | CIBIL | Financial Institution | 6M Card Util | Expected Score | Outcome |
+|---|---|---|---|---|---|---|
+| `test1_salaried_good` | Rohan Sharma | 784 | Bank of Wonderland & Mars | 9.3% | **94.17** | 🟢 Eligible |
+| `test3_business_good` | Meera Iyer | 770 | Intergalactic Bank of Andromeda | 9.0% | **87.08** | 🟢 Eligible |
+| `test7_business_moderate_margin` | Amitav Sen | 680 | Cybertron Sovereign NeoBank | 41.0% | **78.18** | 🟡 Eligible |
+| `test6_salaried_fair_credit_high_cc` | Priya Nambiar | 670 | Valhalla Alpine Commercial Bank | 68.0% | **77.17** | 🟡 Eligible |
+| `test5_salaried_moderate_dti` | Vikram Malhotra | 710 | Mystic River International Bank | 32.0% | **71.58** | 🟡 Eligible |
+| `test4_business_bad` | Rajesh Gupta | 580 | Gryffindor Magical Vault Bank | 90.4% | **40.67** | 🔴 Ineligible |
+| `test2_salaried_bad` | Karan Malhotra | 550 | Atlantis Subsea Crypto Bank | 98.5% | **30.52** | 🔴 Ineligible |
+
+---
+
+## 🚀 Getting Started & Quickstart
+
+### 1. Prerequisites
+- Python 3.9+ (Python 3.11 recommended)
+- Local Ollama instance (or remote cloud model via OpenAI-compatible endpoint)
+
+### 2. Installation
 ```bash
-$ git clone https://github.com/interviewstreet/hiring-agent
-$ cd hiring-agent
+# Clone the repository
+git clone https://github.com/Harshavardhanpentakota/loan-scoring-project.git
+cd loan-scoring-project
 
-$ python -m venv .venv
-# Linux or macOS
-$ source .venv/bin/activate
-# Windows
-# .venv\Scripts\activate
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
 
-$ pip install -r requirements.txt
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-### Ollama Models
+### 3. Model Configuration
+Configure your model endpoint in `providers.json` or through environment variables (`.env`):
+```json
+{
+  "default_model": "gemma4:31b-cloud",
+  "providers": {
+    "ollama": {
+      "base_url": "http://localhost:11434/v1",
+      "models": {
+        "gemma4:31b-cloud": {
+          "temperature": 0.0,
+          "top_p": 1.0
+        }
+      }
+    }
+  }
+}
+```
 
-Pull the model you want to use. For example:
+---
 
+## 💻 CLI Reference
+
+### Underwrite All Scenarios & Generate Portfolio Leaderboard
 ```bash
-$ ollama pull gemma4:latest
+python score.py --pdf_dir data/pdf_scenarios --product loan_products/personal_loan_v1.json
 ```
 
-If you want different results, you can pull other models such as:
-
+### Underwrite a Single Applicant Folder
 ```bash
-# For higher system configuration
-$ ollama pull gemma3:12b
-
-# For lower system configuration
-$ ollama pull gemma3:1b
+python score.py --pdf_dir data/pdf_scenarios/test1_salaried_good --product loan_products/personal_loan_v1.json
 ```
 
----
-
-## Configuration
-
-Copy the template and set your environment variables.
-
+### Audit Extracted Data Against Ground Truth Benchmark
 ```bash
-$ cp .env.example .env
+python score.py --pdf_dir data/pdf_scenarios --product loan_products/personal_loan_v1.json --audit
 ```
 
-**Environment variables**
-
-| Variable         | Values                                      | Description                                                            |
-| ---------------- | ------------------------------------------- | ---------------------------------------------------------------------- |
-| `DEFAULT_MODEL`  | for example `gemma4:latest` or `gemini-2.5-pro` | Model to use; must exist in `providers.json` — the provider is inferred from which provider lists it. Defaults to `default_model` in `providers.json`. |
-| `GEMINI_API_KEY` | string                                      | Required when using a Gemini model.                                   |
-| `GITHUB_TOKEN`   | optional                                    | Inherits from your shell environment, improves GitHub API rate limits. |
-
-Provider mapping lives in `providers.json` — each provider declares its `base_url`, an optional API-key env var, and per-model parameters; `config.py` loads it and resolves the provider for a model. `config.py` also has a flag:
-
-```python
-# config.py
-DEVELOPMENT_MODE = True  # enables caching and CSV export
-```
-
-You can leave it on during iteration. See the next section for details.
-
----
-
-## How it works
-
-<details>
-<summary><b>1) PDF extraction</b></summary>
-
-- `pymupdf_rag.py` and `pdf.py` read the PDF using PyMuPDF and convert pages to Markdown-like text.
-- The `to_markdown` routine handles headings, links, tables, and basic formatting.
-
-</details>
-
-<details>
-<summary><b>2) Section parsing with templates</b></summary>
-
-- `prompts/templates/*.jinja` define strict instructions for each section
-  Basics, Work, Education, Skills, Projects, Awards.
-- `pdf.PDFHandler` calls the LLM per section and assembles a `JSONResume` object (see `models.py`).
-
-</details>
-
-<details>
-<summary><b>3) GitHub enrichment</b></summary>
-
-- `github.py` extracts a username from the resume profiles, fetches profile and repos, and classifies each project.
-- It asks the LLM to select exactly 7 unique projects with a minimum author commit threshold, favoring meaningful contributions.
-
-</details>
-
-<details>
-<summary><b>4) Evaluation</b></summary>
-
-- `evaluator.py` scores the resume against the **role** selected on the command line.
-- Each role lives in `roles/<role_name>/` and defines its own scoring categories and weights in `role.json`, plus its own `criteria.jinja` and `system_message.jinja` prompts (encoding fairness and scoring rules).
-- The shipped `software_engineering_intern` role scores `open_source`, `self_projects`, `production`, and `technical_skills`, plus bonus and deductions, with evidence for each. Other roles can define entirely different categories.
-
-</details>
-
-<details>
-<summary><b>5) Output and CSV export</b></summary>
-
-- `score.py` prints a readable summary to stdout.
-- When `DEVELOPMENT_MODE=True` it creates or appends a per-role `resume_evaluations_<role>.csv` with key fields (columns follow the role's categories), and caches intermediate JSON under `cache/`.
-
-</details>
-
----
-
-## CLI usage
-
-### End to end scoring
-
-Provide a path to a resume PDF and the role to score against. `--role` is the
-name of a directory under `roles/` and is **required**.
-
+### Generate the Executive Multi-Page PDF Report
 ```bash
-$ python score.py ./resume/sample.pdf --role software_engineering_intern
+python scripts/generate_result_pdf.py
 ```
 
-What happens:
+---
 
-1. If development mode is on, the PDF extraction result is cached to `cache/resumecache_<basename>.json`.
-2. If a GitHub profile is found in the resume, repositories are fetched and cached to `cache/githubcache_<basename>.json`.
-3. The evaluator scores the resume against the selected role, prints a report and, in development mode, appends a CSV row to `resume_evaluations_<role>.csv`.
+## 🧪 Automated 4-Layer Test Suite
 
-### Roles
-
-A role bundles its rubric in `roles/<role_name>/`:
-
-```text
-roles/software_engineering_intern/
-├── role.json           # categories, weights (max), bonus_max, score bounds, position_title
-├── criteria.jinja      # evaluation criteria prompt (receives {{ text_content }})
-└── system_message.jinja
-```
-
-`role.json` drives the scoring schema, the printed report, the CSV columns, and
-the score caps — so each role can score against its own categories and weights.
-
-To add a role, scaffold one with basic template files and then edit them:
-
+Run the full test suite verifying determinism, invariants, validation rules, and grounding:
 ```bash
-$ python score.py --init-role backend_engineer
-# edit roles/backend_engineer/{role.json,criteria.jinja,system_message.jinja}
-$ python score.py ./resume/sample.pdf --role backend_engineer
+python run_tests.py
 ```
 
-`--init-role` creates the role directory with placeholder categories and prompts
-(it only scaffolds; it does not score a resume). You can also copy an existing
-role directory instead.
+### Test Coverage (22 / 22 Tests Passing):
+- **Layer 1: Extraction & Null Safety** (`test_extraction.py`): Verifies structured field extraction; enforces that missing fields remain `None` (no silent substitution with 0).
+- **Layer 2: Calculation & Ratios** (`test_features.py`): Mathematical correctness of DTI, EMI-to-income, LTI, debt-to-revenue, and revolving card utilization.
+- **Layer 3: Scoring Invariants** (`test_scoring.py`): Verifies exact scoring reproducibility across 100 repeated runs, custom weight schedules, and contribution traces.
+- **Layer 4: Explanation Grounding** (`test_explanation.py`): Catches and rejects hallucinated numbers, altered final scores, and ungrounded statements.
+- **Integration Tests** (`test_validation.py`, `test_ranking.py`, `test_end_to_end_pipeline.py`): Tests multi-applicant ranking, tie-breaking, and policy gating.
 
 ---
 
-## Directory layout
+## 📜 Lineage & Copyright Notice
 
-```text
-.
-├── .env.example
-├── .python-version
-├── config.py
-├── evaluator.py
-├── github.py
-├── llm_utils.py
-├── models.py
-├── pdf.py
-├── prompt.py
-├── prompts/
-│   ├── template_manager.py
-│   └── templates/
-│       ├── awards.jinja
-│       ├── basics.jinja
-│       ├── education.jinja
-│       ├── github_project_selection.jinja
-│       ├── projects.jinja
-│       ├── skills.jinja
-│       ├── system_message.jinja
-│       └── work.jinja
-├── providers.json
-├── pymupdf_rag.py
-├── requirements.txt
-├── roles.py
-├── roles/
-│   └── software_engineering_intern/
-│       ├── role.json
-│       ├── criteria.jinja
-│       └── system_message.jinja
-├── score.py
-└── transform.py
-```
+This repository originated from the [HackerRank hiring-agent](https://github.com/interviewstreet/hiring-agent) architecture and has been re-architected into a deterministic loan underwriting and applicant ranking agent.
 
----
-
-## Provider details
-
-### Ollama
-
-- Set `DEFAULT_MODEL` to any pulled model listed in `providers.json`, for example `gemma4:latest`
-- Requests go through `models.OpenAICompatibleProvider` against Ollama's OpenAI-compatible endpoint (`http://localhost:11434/v1`)
-
-### Gemini
-
-- Set `DEFAULT_MODEL` to a Gemini model listed in `providers.json`, for example `gemini-2.0-flash`
-- Provide `GEMINI_API_KEY`
-- The same `models.OpenAICompatibleProvider` wrapper is used, pointed at Gemini's OpenAI-compatible endpoint
-
----
-
-## Contributing
-
-Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines on filing issues, proposing changes, and submitting pull requests. Key principles include:
-
-- Keep prompts declarative and provider-agnostic.
-- Validate changes with a couple of real resumes under different providers.
-- Add or adjust unit-free smoke tests that call each stage with minimal inputs.
-
----
-
-
-## License
-
-[MIT](https://github.com/interviewstreet/hiring-agent/blob/master/LICENSE) © HackerRank
+- Original codebase copyright: **Copyright (c) 2025 HackerRank**
+- Licensed under the **MIT License**. See the [`LICENSE`](LICENSE) file for complete terms and copyright preservation.

@@ -1,8 +1,8 @@
 """
-Template Manager for Section Extraction
+Template Manager for Loan Document Extraction and Underwriting Prompts
 
 This module provides functionality to load and render Jinja templates for
-section-specific resume extraction prompts.
+loan document fact extraction and underwriting evaluation summary prompts.
 """
 
 import os
@@ -12,10 +12,11 @@ from jinja2 import Environment, FileSystemLoader, Template
 
 class TemplateManager:
     """
-    Manages Jinja templates for section-specific resume extraction.
+    Manages Jinja templates for loan document extraction and explanation prompts.
 
-    This class provides functionality to load and render templates for
-    different resume sections (basics, work, education, skills, projects, awards).
+    Loads and renders templates for loan document extraction (loan_extraction.jinja),
+    grounded 3-bullet explanations (explanation.jinja), and executive evaluation
+    summaries with criticality classification (evaluation_summary.jinja).
     """
 
     def __init__(self, template_dir: str = "prompts/templates"):

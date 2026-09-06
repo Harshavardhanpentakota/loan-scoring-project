@@ -26,7 +26,7 @@ from models import (
 )
 from prompts.template_manager import TemplateManager
 from llm_utils import extract_json_from_response, initialize_llm_provider
-from prompt import DEFAULT_MODEL, MODEL_PARAMETERS
+from config import DEFAULT_MODEL, MODEL_PARAMETERS
 
 logger = logging.getLogger(__name__)
 

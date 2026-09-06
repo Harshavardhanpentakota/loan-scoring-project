@@ -6,8 +6,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# Global development mode flag. Preserved here because score.py and github.py
-# import it from this module.
+# Global development mode flag.
 DEVELOPMENT_MODE = True
 
 # Load .env before any os.getenv below, so values apply regardless of import order.
@@ -21,8 +20,7 @@ with open(_CONFIG_PATH) as _f:
 # Default model, overridable by env.
 DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", _config["default_model"])
 
-# Flat model -> {temperature, top_p} map. Preserves the contract that
-# prompt.MODEL_PARAMETERS exposed to evaluator.py / pdf.py / github.py / score.py.
+# Flat model -> {temperature, top_p} map for LLM extraction and explanation generation.
 MODEL_PARAMETERS = {
     model: {k: v for k, v in params.items() if k in ("temperature", "top_p")}
     for provider in _config["providers"].values()

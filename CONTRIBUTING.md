@@ -47,21 +47,19 @@ Thanks for your interest in improving this project. Contributions are welcome, i
 
 ### Tests and Smoke Checks
 
-* Validate changes with a couple of real resumes under different providers when possible:
-
-  * One run with Ollama using the default local model.
-  * One run with Gemini if you have an API key.
-* Add or adjust small smoke tests that exercise each stage with minimal inputs:
-
-  * PDF to Markdown
-  * Section extraction to JSON Resume
-  * GitHub enrichment on a known username
-  * Evaluation to JSON with the required fields
-
+* Validate changes by running the automated 4-layer test suite:
+  ```bash
+  python run_tests.py
+  ```
+* Run underwriting smoke checks across synthetic PDF scenarios:
+  ```bash
+  python score.py --pdf_dir data/pdf_scenarios --product loan_products/personal_loan_v1.json
+  ```
+* Maintain strict determinism invariants: mathematical scoring functions and ranking logic must remain pure and reproducible.
 
 ### Commit Messages
 
-* Use clear, imperative subjects, for example: `fix: handle en dash date ranges in work parser`.
+* Use clear, imperative subjects, for example: `feat: add debt-to-revenue ratio calculation`.
 * Reference the issue number when applicable.
 
 ## Code of Conduct
