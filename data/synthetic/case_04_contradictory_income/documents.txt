@@ -1,0 +1,21 @@
+--- START DOCUMENT: salary_slip.txt ---
+Company: Delta Engineering Ltd
+Employee: Arjun Patel
+Pay Period: May 2026
+Gross Monthly Salary: ₹1,25,000
+Net Take-Home Salary: ₹1,04,500
+--- END DOCUMENT: salary_slip.txt ---
+
+--- START DOCUMENT: form_16_tax.txt ---
+Form 16 Certificate
+Assessment Year 2026-27
+Employee: Arjun Patel
+Total Gross Annual Salary under section 17: ₹8,50,000
+--- END DOCUMENT: form_16_tax.txt ---
+
+--- START DOCUMENT: credit_report.txt ---
+Bureau Report - Arjun Patel
+CIBIL Score: 750
+Existing Monthly EMI: ₹15,000
+Missed Payments: 0
+--- END DOCUMENT: credit_report.txt ---

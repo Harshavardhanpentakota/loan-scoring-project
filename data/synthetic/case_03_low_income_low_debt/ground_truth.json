@@ -1,0 +1,23 @@
+{
+  "application_id": "APP_03_LOW_INCOME",
+  "applicant_name": "Suresh Kumar",
+  "applicant_type": "salaried",
+  "employment_type": "contract",
+  "employer_or_business_name": "Metro Logistics Hub",
+  "employment_duration_years": 1.5,
+  "monthly_gross_income": 22000.0,
+  "monthly_net_income": 19500.0,
+  "annual_income": 264000.0,
+  "existing_monthly_emi": 0.0,
+  "outstanding_debt": 0.0,
+  "missed_payments": 0,
+  "requested_loan_amount": 50000.0,
+  "tenure_months": 12,
+  "credit_score": 680,
+  "credit_utilization_ratio": 0.05,
+  "identity_verified": true,
+  "income_document_available": true,
+  "bank_statement_available": true,
+  "tax_document_available": false,
+  "loan_statement_available": false
+}

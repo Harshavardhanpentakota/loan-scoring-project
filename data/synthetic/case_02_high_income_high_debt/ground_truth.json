@@ -1,0 +1,23 @@
+{
+  "application_id": "APP_02_HIGH_DEBT",
+  "applicant_name": "Pooja Verma",
+  "applicant_type": "salaried",
+  "employment_type": "permanent",
+  "employer_or_business_name": "Zenith Financial Tech",
+  "employment_duration_years": 8.0,
+  "monthly_gross_income": 350000.0,
+  "monthly_net_income": 270000.0,
+  "annual_income": 4200000.0,
+  "existing_monthly_emi": 180000.0,
+  "outstanding_debt": 8500000.0,
+  "missed_payments": 0,
+  "requested_loan_amount": 1500000.0,
+  "tenure_months": 48,
+  "credit_score": 720,
+  "credit_utilization_ratio": 0.65,
+  "identity_verified": true,
+  "income_document_available": true,
+  "bank_statement_available": true,
+  "tax_document_available": true,
+  "loan_statement_available": true
+}

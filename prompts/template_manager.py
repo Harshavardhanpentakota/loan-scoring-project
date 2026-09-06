@@ -33,27 +33,17 @@ class TemplateManager:
         self._load_templates()
 
     def _load_templates(self):
-        """Load all available templates."""
-        template_files = {
-            "basics": "basics.jinja",
-            "work": "work.jinja",
-            "education": "education.jinja",
-            "skills": "skills.jinja",
-            "projects": "projects.jinja",
-            "awards": "awards.jinja",
-            "system_message": "system_message.jinja",
-            "github_project_selection": "github_project_selection.jinja",
-        }
+        """Load all available .jinja templates in the template directory."""
+        if not os.path.exists(self.template_dir):
+            return
 
-        for section_name, filename in template_files.items():
-            try:
-                template_path = os.path.join(self.template_dir, filename)
-                if os.path.exists(template_path):
+        for filename in os.listdir(self.template_dir):
+            if filename.endswith(".jinja"):
+                section_name = filename[:-6]  # Strip .jinja
+                try:
                     self._templates[section_name] = self.env.get_template(filename)
-                else:
-                    print(f"⚠️ Template file not found: {template_path}")
-            except Exception as e:
-                print(f"❌ Error loading template {filename}: {e}")
+                except Exception as e:
+                    print(f"❌ Error loading template {filename}: {e}")
 
     def get_available_sections(self) -> list:
         """

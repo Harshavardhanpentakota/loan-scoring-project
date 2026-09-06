@@ -1,0 +1,19 @@
+--- START DOCUMENT: overseas_salary.txt ---
+Overseas Employment Statement
+Employee: Daniel Fernandez
+Gross Monthly Remuneration: $8,000 USD
+Net Salary: $6,500 USD
+--- END DOCUMENT: overseas_salary.txt ---
+
+--- START DOCUMENT: loan_request.txt ---
+Indian Domestic Loan Request Form
+Applicant: Daniel Fernandez
+Requested Facility: ₹5,00,000 INR
+Tenure: 24 months
+--- END DOCUMENT: loan_request.txt ---
+
+--- START DOCUMENT: corrupt_bureau.txt ---
+Third Party Bureau Rating
+Reported Score: 980
+(System Error: Score exceeds international max of 900)
+--- END DOCUMENT: corrupt_bureau.txt ---

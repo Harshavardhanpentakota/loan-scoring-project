@@ -1,0 +1,2834 @@
+{
+  "model_version": "personal_loan_v1",
+  "qualified_ranked": [
+    {
+      "rank": 1,
+      "application_id": "test1_salaried_good",
+      "applicant_name": "Rohan Sharma",
+      "applicant_type": "salaried",
+      "final_score": 94.17,
+      "criticality": "LOW",
+      "eligibility_status": "ELIGIBLE",
+      "scoring_model": "personal_loan_v1",
+      "component_scores": {
+        "credit_history": 80.67,
+        "repayment_behavior": 100.0,
+        "income_stability": 100.0,
+        "debt_burden": 100.0,
+        "employment_stability": 100.0,
+        "affordability": 100.0,
+        "documentation_quality": 80.0
+      },
+      "dti": 0.144,
+      "credit_score": 784,
+      "monthly_income": 125000.0,
+      "explanation": null,
+      "explanation_status": null,
+      "validation_status": "VALID",
+      "evaluation_summary": {
+        "application_id": "test1_salaried_good",
+        "overall_score": 94.17,
+        "overall_criticality": "LOW",
+        "executive_verdict": "The applicant demonstrates an exceptional credit profile with a low-risk posture, characterized by a high overall score of 94.17 and strong financial stability across all primary metrics.",
+        "pros": [
+          {
+            "criticality": "HIGH",
+            "point": "Impeccable repayment history and creditworthiness",
+            "evidence": "Credit Bureau Score of 784, 0 missed payments in the past 24 months, and \u20b90.00 active overdue balance."
+          },
+          {
+            "criticality": "HIGH",
+            "point": "Excellent debt capacity and affordability",
+            "evidence": "Very low DTI of 14.4% and a proposed EMI to Income ratio of 17.2%."
+          },
+          {
+            "criticality": "MED",
+            "point": "Strong employment and income stability",
+            "evidence": "5.2 years of employment tenure with a verified monthly bank salary of \u20b9104,500.00."
+          },
+          {
+            "criticality": "LOW",
+            "point": "Conservative credit utilization",
+            "evidence": "Credit card utilization is low at 9.3%."
+          }
+        ],
+        "cons": [
+          {
+            "criticality": "LOW",
+            "point": "Sub-optimal documentation completeness",
+            "evidence": "Documentation quality score is 80.0/100 with a completeness ratio of 80.0%."
+          }
+        ]
+      }
+    },
+    {
+      "rank": 2,
+      "application_id": "test3_business_good",
+      "applicant_name": "Meera Iyer",
+      "applicant_type": "self_employed",
+      "final_score": 87.08,
+      "criticality": "LOW",
+      "eligibility_status": "ELIGIBLE",
+      "scoring_model": "personal_loan_v1",
+      "component_scores": {
+        "credit_history": 78.33,
+        "repayment_behavior": 100.0,
+        "income_stability": 100.0,
+        "debt_burden": 50.0,
+        "employment_stability": 100.0,
+        "affordability": 100.0,
+        "documentation_quality": 100.0
+      },
+      "dti": null,
+      "credit_score": 770,
+      "monthly_income": 150000.0,
+      "explanation": null,
+      "explanation_status": null,
+      "validation_status": "VALID",
+      "evaluation_summary": {
+        "application_id": "test3_business_good",
+        "overall_score": 87.08,
+        "overall_criticality": "LOW",
+        "executive_verdict": "The applicant demonstrates an exceptionally strong credit profile with a low risk posture, characterized by perfect repayment behavior, high income stability, and excellent affordability.",
+        "pros": [
+          {
+            "criticality": "HIGH",
+            "point": "Perfect repayment track record",
+            "evidence": "0 missed payments in 48 months and \u20b90.00 active overdue balance"
+          },
+          {
+            "criticality": "HIGH",
+            "point": "Excellent affordability and low debt burden",
+            "evidence": "EMI to Income Ratio of 16.7% and Credit Card Utilization of 9.0%"
+          },
+          {
+            "criticality": "MED",
+            "point": "Strong employment stability",
+            "evidence": "7.0 years of employment tenure at Iyer Precision Tools & Dies"
+          },
+          {
+            "criticality": "MED",
+            "point": "Prime credit bureau standing",
+            "evidence": "Credit Bureau Score of 770 (Prime Grade)"
+          },
+          {
+            "criticality": "LOW",
+            "point": "Complete documentation",
+            "evidence": "Documentation completeness ratio of 100.0%"
+          }
+        ],
+        "cons": [
+          {
+            "criticality": "LOW",
+            "point": "Neutral debt burden scoring due to missing DTI",
+            "evidence": "Debt burden raw score of 50.0/100 as DTI was unavailable"
+          }
+        ]
+      }
+    },
+    {
+      "rank": 3,
+      "application_id": "test7_business_moderate_margin",
+      "applicant_name": "Amitav Sen",
+      "applicant_type": "self_employed",
+      "final_score": 78.18,
+      "criticality": "MED",
+      "eligibility_status": "ELIGIBLE",
+      "scoring_model": "personal_loan_v1",
+      "component_scores": {
+        "credit_history": 63.33,
+        "repayment_behavior": 100.0,
+        "income_stability": 64.0,
+        "debt_burden": 85.0,
+        "employment_stability": 80.0,
+        "affordability": 80.0,
+        "documentation_quality": 80.0
+      },
+      "dti": 0.2353,
+      "credit_score": 680,
+      "monthly_income": 85000.0,
+      "explanation": null,
+      "explanation_status": null,
+      "validation_status": "VALID",
+      "evaluation_summary": {
+        "application_id": "test7_business_moderate_margin",
+        "overall_score": 78.18,
+        "overall_criticality": "MED",
+        "executive_verdict": "The applicant demonstrates strong repayment discipline and healthy affordability ratios, though the overall risk is moderate due to a mediocre credit bureau score and average income stability.",
+        "pros": [
+          {
+            "criticality": "HIGH",
+            "point": "Perfect repayment track record",
+            "evidence": "0 missed payments in the past 24 months and \u20b90.00 active overdue balance"
+          },
+          {
+            "criticality": "HIGH",
+            "point": "Strong debt capacity and affordability",
+            "evidence": "Low DTI of 23.5% and a healthy EMI to Income ratio of 26.7%"
+          },
+          {
+            "criticality": "MED",
+            "point": "Stable employment history",
+            "evidence": "Employment tenure of 3.2 years at Sen Craft Furnishings"
+          },
+          {
+            "criticality": "LOW",
+            "point": "Positive net cash flow",
+            "evidence": "6-month bank inflows of \u20b9547,000.00 vs outflows of \u20b9289,000.00"
+          }
+        ],
+        "cons": [
+          {
+            "criticality": "HIGH",
+            "point": "Moderate credit bureau score",
+            "evidence": "Credit Bureau Score of 680, resulting in a credit_history raw score of 63.33/100"
+          },
+          {
+            "criticality": "MED",
+            "point": "Average income stability",
+            "evidence": "Income stability raw score of 64.0/100"
+          },
+          {
+            "criticality": "LOW",
+            "point": "Moderate credit card utilization",
+            "evidence": "Credit Card Utilization is at 41.0%"
+          },
+          {
+            "criticality": "LOW",
+            "point": "Incomplete documentation",
+            "evidence": "Documentation completeness ratio is 80.0%"
+          }
+        ]
+      }
+    },
+    {
+      "rank": 4,
+      "application_id": "test6_salaried_fair_credit_high_cc",
+      "applicant_name": "Priya Nambiar",
+      "applicant_type": "salaried",
+      "final_score": 77.17,
+      "criticality": "MED",
+      "eligibility_status": "ELIGIBLE",
+      "scoring_model": "personal_loan_v1",
+      "component_scores": {
+        "credit_history": 61.67,
+        "repayment_behavior": 100.0,
+        "income_stability": 45.0,
+        "debt_burden": 100.0,
+        "employment_stability": 60.0,
+        "affordability": 100.0,
+        "documentation_quality": 80.0
+      },
+      "dti": 0.129,
+      "credit_score": 670,
+      "monthly_income": 62000.0,
+      "explanation": null,
+      "explanation_status": null,
+      "validation_status": "VALID",
+      "evaluation_summary": {
+        "application_id": "test6_salaried_fair_credit_high_cc",
+        "overall_score": 77.17,
+        "overall_criticality": "MED",
+        "executive_verdict": "The applicant demonstrates strong repayment discipline and excellent affordability with a low DTI, though overall creditworthiness is tempered by a fair credit score and high credit card utilization.",
+        "pros": [
+          {
+            "criticality": "HIGH",
+            "point": "Excellent debt affordability and low burden",
+            "evidence": "DTI is 12.9% and EMI to Income Ratio is 14.5%"
+          },
+          {
+            "criticality": "HIGH",
+            "point": "Perfect repayment track record",
+            "evidence": "0 missed payments in the past 24 months and \u20b90.00 active overdue balance"
+          },
+          {
+            "criticality": "MED",
+            "point": "Stable verified income stream",
+            "evidence": "Verified monthly bank salary of \u20b955,000.00 INR"
+          },
+          {
+            "criticality": "LOW",
+            "point": "Satisfactory documentation completeness",
+            "evidence": "Documentation quality score of 80.0%"
+          }
+        ],
+        "cons": [
+          {
+            "criticality": "HIGH",
+            "point": "High credit card utilization",
+            "evidence": "Credit Card Utilization is 68.0%"
+          },
+          {
+            "criticality": "MED",
+            "point": "Fair credit bureau rating",
+            "evidence": "Credit Bureau Score of 670"
+          },
+          {
+            "criticality": "MED",
+            "point": "Moderate employment tenure",
+            "evidence": "Employment tenure of 1.5 years at Apex Global Logistics Ltd"
+          }
+        ]
+      }
+    },
+    {
+      "rank": 5,
+      "application_id": "test5_salaried_moderate_dti",
+      "applicant_name": "Vikram Malhotra",
+      "applicant_type": "salaried",
+      "final_score": 71.58,
+      "criticality": "MED",
+      "eligibility_status": "ELIGIBLE",
+      "scoring_model": "personal_loan_v1",
+      "component_scores": {
+        "credit_history": 68.33,
+        "repayment_behavior": 70.0,
+        "income_stability": 65.0,
+        "debt_burden": 85.0,
+        "employment_stability": 60.0,
+        "affordability": 80.0,
+        "documentation_quality": 80.0
+      },
+      "dti": 0.2222,
+      "credit_score": 710,
+      "monthly_income": 72000.0,
+      "explanation": null,
+      "explanation_status": null,
+      "validation_status": "VALID",
+      "evaluation_summary": {
+        "application_id": "test5_salaried_moderate_dti",
+        "overall_score": 71.58,
+        "overall_criticality": "MED",
+        "executive_verdict": "The applicant demonstrates a moderate risk profile with strong affordability and low debt burden, though creditworthiness is tempered by a fair bureau score and a recent missed payment.",
+        "pros": [
+          {
+            "criticality": "HIGH",
+            "point": "Strong debt capacity and affordability",
+            "evidence": "DTI is low at 22.2% and the EMI to Income ratio is healthy at 24.6%."
+          },
+          {
+            "criticality": "MED",
+            "point": "Stable income verification",
+            "evidence": "Verified monthly bank salary of \u20b965,000.00 INR with payroll deposits verified within 10% over 6 months."
+          },
+          {
+            "criticality": "LOW",
+            "point": "Manageable credit utilization",
+            "evidence": "Credit card utilization is maintained at 32.0%."
+          }
+        ],
+        "cons": [
+          {
+            "criticality": "HIGH",
+            "point": "Recent repayment delinquency",
+            "evidence": "One historical missed payment recorded (30 Days Past Due in Feb 2025)."
+          },
+          {
+            "criticality": "MED",
+            "point": "Moderate credit bureau standing",
+            "evidence": "Credit Bureau Score of 710, categorized as Fair / Moderate Grade."
+          },
+          {
+            "criticality": "LOW",
+            "point": "Limited employment tenure",
+            "evidence": "Employment tenure is 2.5 years at TechNova Solutions Pvt Ltd."
+          }
+        ]
+      }
+    }
+  ],
+  "manual_review_queue": [],
+  "ineligible_queue": [
+    {
+      "rank": 1,
+      "application_id": "test4_business_bad",
+      "applicant_name": "Rajesh Gupta",
+      "applicant_type": "self_employed",
+      "final_score": 40.67,
+      "criticality": "HIGH",
+      "eligibility_status": "INELIGIBLE",
+      "scoring_model": "personal_loan_v1",
+      "component_scores": {
+        "credit_history": 46.67,
+        "repayment_behavior": 5.0,
+        "income_stability": 60.0,
+        "debt_burden": 40.0,
+        "employment_stability": 80.0,
+        "affordability": 20.0,
+        "documentation_quality": 60.0
+      },
+      "dti": null,
+      "credit_score": 580,
+      "monthly_income": 20000.0,
+      "explanation": null,
+      "explanation_status": null,
+      "validation_status": "VALID",
+      "evaluation_summary": {
+        "application_id": "test4_business_bad",
+        "overall_score": 40.67,
+        "overall_criticality": "HIGH",
+        "executive_verdict": "The application presents an extremely high risk profile characterized by severe affordability strain and poor repayment behavior, resulting in a failing overall score of 40.67/100.",
+        "pros": [
+          {
+            "criticality": "MED",
+            "point": "Stable employment tenure",
+            "evidence": "3.0 years of employment at Apex Fasteners & Hardware"
+          },
+          {
+            "criticality": "LOW",
+            "point": "Moderate income stability score",
+            "evidence": "Income stability raw score of 60.0/100"
+          }
+        ],
+        "cons": [
+          {
+            "criticality": "HIGH",
+            "point": "Extreme affordability deficit",
+            "evidence": "EMI to Income Ratio of 290.0% against a monthly net income of \u20b920,000.00"
+          },
+          {
+            "criticality": "HIGH",
+            "point": "Severe repayment delinquency",
+            "evidence": "2 missed payments in the last 12 months with an active overdue balance of \u20b980,000.00"
+          },
+          {
+            "criticality": "HIGH",
+            "point": "Sub-standard credit history",
+            "evidence": "Credit Bureau Score of 580"
+          },
+          {
+            "criticality": "MED",
+            "point": "Excessive credit utilization",
+            "evidence": "Credit Card Utilization at 90.4%"
+          },
+          {
+            "criticality": "MED",
+            "point": "Negative cash flow trend",
+            "evidence": "6-month bank outflows (\u20b9191,700.00) exceed inflows (\u20b9157,000.00)"
+          },
+          {
+            "criticality": "LOW",
+            "point": "Incomplete documentation",
+            "evidence": "Documentation completeness ratio of 60.0%"
+          }
+        ]
+      }
+    },
+    {
+      "rank": 2,
+      "application_id": "test2_salaried_bad",
+      "applicant_name": "Karan Malhotra",
+      "applicant_type": "salaried",
+      "final_score": 30.52,
+      "criticality": "HIGH",
+      "eligibility_status": "INELIGIBLE",
+      "scoring_model": "personal_loan_v1",
+      "component_scores": {
+        "credit_history": 41.67,
+        "repayment_behavior": 5.0,
+        "income_stability": 29.0,
+        "debt_burden": 25.0,
+        "employment_stability": 60.0,
+        "affordability": 20.0,
+        "documentation_quality": 60.0
+      },
+      "dti": 0.4889,
+      "credit_score": 550,
+      "monthly_income": 45000.0,
+      "explanation": null,
+      "explanation_status": null,
+      "validation_status": "VALID",
+      "evaluation_summary": {
+        "application_id": "test2_salaried_bad",
+        "overall_score": 30.52,
+        "overall_criticality": "HIGH",
+        "executive_verdict": "The application presents a high-risk profile characterized by severe repayment delinquency, critical debt saturation, and poor credit scoring, resulting in an overall score of 30.52/100.",
+        "pros": [
+          {
+            "criticality": "MED",
+            "point": "Stable employment tenure",
+            "evidence": "Employment tenure of 1.2 years at Zenith Retail Logistics"
+          },
+          {
+            "criticality": "LOW",
+            "point": "Verified income stream",
+            "evidence": "6M bank statement verifies payroll deposits of \u20b938,000.00 monthly within 10%"
+          }
+        ],
+        "cons": [
+          {
+            "criticality": "HIGH",
+            "point": "Severe repayment delinquency",
+            "evidence": "4 missed payments in the last 12 months with an active overdue balance of \u20b935,000.00"
+          },
+          {
+            "criticality": "HIGH",
+            "point": "Critical debt and credit utilization",
+            "evidence": "Credit card utilization is at 98.5% and DTI is 48.9%"
+          },
+          {
+            "criticality": "HIGH",
+            "point": "Poor creditworthiness and affordability",
+            "evidence": "Bureau score of 550 and a strained EMI to Income ratio of 57.9%"
+          },
+          {
+            "criticality": "MED",
+            "point": "Suboptimal documentation quality",
+            "evidence": "Documentation completeness ratio is only 60.0%"
+          }
+        ]
+      }
+    }
+  ],
+  "evaluation_summaries": {
+    "test1_salaried_good": {
+      "application_id": "test1_salaried_good",
+      "overall_score": 94.17,
+      "overall_criticality": "LOW",
+      "executive_verdict": "The applicant demonstrates an exceptional credit profile with a low-risk posture, characterized by a high overall score of 94.17 and strong financial stability across all primary metrics.",
+      "pros": [
+        {
+          "criticality": "HIGH",
+          "point": "Impeccable repayment history and creditworthiness",
+          "evidence": "Credit Bureau Score of 784, 0 missed payments in the past 24 months, and \u20b90.00 active overdue balance."
+        },
+        {
+          "criticality": "HIGH",
+          "point": "Excellent debt capacity and affordability",
+          "evidence": "Very low DTI of 14.4% and a proposed EMI to Income ratio of 17.2%."
+        },
+        {
+          "criticality": "MED",
+          "point": "Strong employment and income stability",
+          "evidence": "5.2 years of employment tenure with a verified monthly bank salary of \u20b9104,500.00."
+        },
+        {
+          "criticality": "LOW",
+          "point": "Conservative credit utilization",
+          "evidence": "Credit card utilization is low at 9.3%."
+        }
+      ],
+      "cons": [
+        {
+          "criticality": "LOW",
+          "point": "Sub-optimal documentation completeness",
+          "evidence": "Documentation quality score is 80.0/100 with a completeness ratio of 80.0%."
+        }
+      ]
+    },
+    "test4_business_bad": {
+      "application_id": "test4_business_bad",
+      "overall_score": 40.67,
+      "overall_criticality": "HIGH",
+      "executive_verdict": "The application presents an extremely high risk profile characterized by severe affordability strain and poor repayment behavior, resulting in a failing overall score of 40.67/100.",
+      "pros": [
+        {
+          "criticality": "MED",
+          "point": "Stable employment tenure",
+          "evidence": "3.0 years of employment at Apex Fasteners & Hardware"
+        },
+        {
+          "criticality": "LOW",
+          "point": "Moderate income stability score",
+          "evidence": "Income stability raw score of 60.0/100"
+        }
+      ],
+      "cons": [
+        {
+          "criticality": "HIGH",
+          "point": "Extreme affordability deficit",
+          "evidence": "EMI to Income Ratio of 290.0% against a monthly net income of \u20b920,000.00"
+        },
+        {
+          "criticality": "HIGH",
+          "point": "Severe repayment delinquency",
+          "evidence": "2 missed payments in the last 12 months with an active overdue balance of \u20b980,000.00"
+        },
+        {
+          "criticality": "HIGH",
+          "point": "Sub-standard credit history",
+          "evidence": "Credit Bureau Score of 580"
+        },
+        {
+          "criticality": "MED",
+          "point": "Excessive credit utilization",
+          "evidence": "Credit Card Utilization at 90.4%"
+        },
+        {
+          "criticality": "MED",
+          "point": "Negative cash flow trend",
+          "evidence": "6-month bank outflows (\u20b9191,700.00) exceed inflows (\u20b9157,000.00)"
+        },
+        {
+          "criticality": "LOW",
+          "point": "Incomplete documentation",
+          "evidence": "Documentation completeness ratio of 60.0%"
+        }
+      ]
+    },
+    "test3_business_good": {
+      "application_id": "test3_business_good",
+      "overall_score": 87.08,
+      "overall_criticality": "LOW",
+      "executive_verdict": "The applicant demonstrates an exceptionally strong credit profile with a low risk posture, characterized by perfect repayment behavior, high income stability, and excellent affordability.",
+      "pros": [
+        {
+          "criticality": "HIGH",
+          "point": "Perfect repayment track record",
+          "evidence": "0 missed payments in 48 months and \u20b90.00 active overdue balance"
+        },
+        {
+          "criticality": "HIGH",
+          "point": "Excellent affordability and low debt burden",
+          "evidence": "EMI to Income Ratio of 16.7% and Credit Card Utilization of 9.0%"
+        },
+        {
+          "criticality": "MED",
+          "point": "Strong employment stability",
+          "evidence": "7.0 years of employment tenure at Iyer Precision Tools & Dies"
+        },
+        {
+          "criticality": "MED",
+          "point": "Prime credit bureau standing",
+          "evidence": "Credit Bureau Score of 770 (Prime Grade)"
+        },
+        {
+          "criticality": "LOW",
+          "point": "Complete documentation",
+          "evidence": "Documentation completeness ratio of 100.0%"
+        }
+      ],
+      "cons": [
+        {
+          "criticality": "LOW",
+          "point": "Neutral debt burden scoring due to missing DTI",
+          "evidence": "Debt burden raw score of 50.0/100 as DTI was unavailable"
+        }
+      ]
+    },
+    "test2_salaried_bad": {
+      "application_id": "test2_salaried_bad",
+      "overall_score": 30.52,
+      "overall_criticality": "HIGH",
+      "executive_verdict": "The application presents a high-risk profile characterized by severe repayment delinquency, critical debt saturation, and poor credit scoring, resulting in an overall score of 30.52/100.",
+      "pros": [
+        {
+          "criticality": "MED",
+          "point": "Stable employment tenure",
+          "evidence": "Employment tenure of 1.2 years at Zenith Retail Logistics"
+        },
+        {
+          "criticality": "LOW",
+          "point": "Verified income stream",
+          "evidence": "6M bank statement verifies payroll deposits of \u20b938,000.00 monthly within 10%"
+        }
+      ],
+      "cons": [
+        {
+          "criticality": "HIGH",
+          "point": "Severe repayment delinquency",
+          "evidence": "4 missed payments in the last 12 months with an active overdue balance of \u20b935,000.00"
+        },
+        {
+          "criticality": "HIGH",
+          "point": "Critical debt and credit utilization",
+          "evidence": "Credit card utilization is at 98.5% and DTI is 48.9%"
+        },
+        {
+          "criticality": "HIGH",
+          "point": "Poor creditworthiness and affordability",
+          "evidence": "Bureau score of 550 and a strained EMI to Income ratio of 57.9%"
+        },
+        {
+          "criticality": "MED",
+          "point": "Suboptimal documentation quality",
+          "evidence": "Documentation completeness ratio is only 60.0%"
+        }
+      ]
+    },
+    "test5_salaried_moderate_dti": {
+      "application_id": "test5_salaried_moderate_dti",
+      "overall_score": 71.58,
+      "overall_criticality": "MED",
+      "executive_verdict": "The applicant demonstrates a moderate risk profile with strong affordability and low debt burden, though creditworthiness is tempered by a fair bureau score and a recent missed payment.",
+      "pros": [
+        {
+          "criticality": "HIGH",
+          "point": "Strong debt capacity and affordability",
+          "evidence": "DTI is low at 22.2% and the EMI to Income ratio is healthy at 24.6%."
+        },
+        {
+          "criticality": "MED",
+          "point": "Stable income verification",
+          "evidence": "Verified monthly bank salary of \u20b965,000.00 INR with payroll deposits verified within 10% over 6 months."
+        },
+        {
+          "criticality": "LOW",
+          "point": "Manageable credit utilization",
+          "evidence": "Credit card utilization is maintained at 32.0%."
+        }
+      ],
+      "cons": [
+        {
+          "criticality": "HIGH",
+          "point": "Recent repayment delinquency",
+          "evidence": "One historical missed payment recorded (30 Days Past Due in Feb 2025)."
+        },
+        {
+          "criticality": "MED",
+          "point": "Moderate credit bureau standing",
+          "evidence": "Credit Bureau Score of 710, categorized as Fair / Moderate Grade."
+        },
+        {
+          "criticality": "LOW",
+          "point": "Limited employment tenure",
+          "evidence": "Employment tenure is 2.5 years at TechNova Solutions Pvt Ltd."
+        }
+      ]
+    },
+    "test6_salaried_fair_credit_high_cc": {
+      "application_id": "test6_salaried_fair_credit_high_cc",
+      "overall_score": 77.17,
+      "overall_criticality": "MED",
+      "executive_verdict": "The applicant demonstrates strong repayment discipline and excellent affordability with a low DTI, though overall creditworthiness is tempered by a fair credit score and high credit card utilization.",
+      "pros": [
+        {
+          "criticality": "HIGH",
+          "point": "Excellent debt affordability and low burden",
+          "evidence": "DTI is 12.9% and EMI to Income Ratio is 14.5%"
+        },
+        {
+          "criticality": "HIGH",
+          "point": "Perfect repayment track record",
+          "evidence": "0 missed payments in the past 24 months and \u20b90.00 active overdue balance"
+        },
+        {
+          "criticality": "MED",
+          "point": "Stable verified income stream",
+          "evidence": "Verified monthly bank salary of \u20b955,000.00 INR"
+        },
+        {
+          "criticality": "LOW",
+          "point": "Satisfactory documentation completeness",
+          "evidence": "Documentation quality score of 80.0%"
+        }
+      ],
+      "cons": [
+        {
+          "criticality": "HIGH",
+          "point": "High credit card utilization",
+          "evidence": "Credit Card Utilization is 68.0%"
+        },
+        {
+          "criticality": "MED",
+          "point": "Fair credit bureau rating",
+          "evidence": "Credit Bureau Score of 670"
+        },
+        {
+          "criticality": "MED",
+          "point": "Moderate employment tenure",
+          "evidence": "Employment tenure of 1.5 years at Apex Global Logistics Ltd"
+        }
+      ]
+    },
+    "test7_business_moderate_margin": {
+      "application_id": "test7_business_moderate_margin",
+      "overall_score": 78.18,
+      "overall_criticality": "MED",
+      "executive_verdict": "The applicant demonstrates strong repayment discipline and healthy affordability ratios, though the overall risk is moderate due to a mediocre credit bureau score and average income stability.",
+      "pros": [
+        {
+          "criticality": "HIGH",
+          "point": "Perfect repayment track record",
+          "evidence": "0 missed payments in the past 24 months and \u20b90.00 active overdue balance"
+        },
+        {
+          "criticality": "HIGH",
+          "point": "Strong debt capacity and affordability",
+          "evidence": "Low DTI of 23.5% and a healthy EMI to Income ratio of 26.7%"
+        },
+        {
+          "criticality": "MED",
+          "point": "Stable employment history",
+          "evidence": "Employment tenure of 3.2 years at Sen Craft Furnishings"
+        },
+        {
+          "criticality": "LOW",
+          "point": "Positive net cash flow",
+          "evidence": "6-month bank inflows of \u20b9547,000.00 vs outflows of \u20b9289,000.00"
+        }
+      ],
+      "cons": [
+        {
+          "criticality": "HIGH",
+          "point": "Moderate credit bureau score",
+          "evidence": "Credit Bureau Score of 680, resulting in a credit_history raw score of 63.33/100"
+        },
+        {
+          "criticality": "MED",
+          "point": "Average income stability",
+          "evidence": "Income stability raw score of 64.0/100"
+        },
+        {
+          "criticality": "LOW",
+          "point": "Moderate credit card utilization",
+          "evidence": "Credit Card Utilization is at 41.0%"
+        },
+        {
+          "criticality": "LOW",
+          "point": "Incomplete documentation",
+          "evidence": "Documentation completeness ratio is 80.0%"
+        }
+      ]
+    }
+  },
+  "audit_traces": {
+    "test1_salaried_good": {
+      "features": [
+        {
+          "feature": "debt_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_gross_income",
+          "inputs": {
+            "existing_monthly_emi": 18000.0,
+            "monthly_gross_income": 125000.0
+          },
+          "result": 0.144,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "emi_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_net_income",
+          "inputs": {
+            "existing_monthly_emi": 18000.0,
+            "monthly_income": 104500.0
+          },
+          "result": 0.1722,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "loan_to_income_ratio",
+          "formula": "requested_loan_amount / annual_income",
+          "inputs": {
+            "requested_loan_amount": 750000.0,
+            "annual_income": 1500000.0
+          },
+          "result": 0.5,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "credit_card_utilization",
+          "formula": "credit_card_total_balance / credit_card_limit",
+          "inputs": {
+            "credit_card_total_balance": 28000.0,
+            "credit_card_limit": 300000.0
+          },
+          "result": 0.0933,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "income_stability_index",
+          "formula": "min(100.0, employment_years * 20.0 + permanent_bonus)",
+          "inputs": {
+            "employment_duration_years": 5.2,
+            "employment_type": "Permanent Salaried"
+          },
+          "result": 100.0,
+          "units": "index_points",
+          "notes": null
+        },
+        {
+          "feature": "documentation_completeness",
+          "formula": "available_verified_documents / total_required_documents",
+          "inputs": {
+            "available_count": 4,
+            "total_required": 5
+          },
+          "result": 0.8,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_credits_6m",
+          "formula": "sum(credit_transactions.amount)",
+          "inputs": {
+            "credit_transaction_count": 6,
+            "credit_amounts": [
+              104500.0,
+              104500.0,
+              104500.0,
+              104500.0,
+              104500.0,
+              104500.0
+            ]
+          },
+          "result": 627000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_debits_6m",
+          "formula": "sum(debit_transactions.amount)",
+          "inputs": {
+            "debit_transaction_count": 17,
+            "debit_amounts": [
+              4500.0,
+              2800.0,
+              1600.0,
+              18000.0,
+              10000.0,
+              3400.0,
+              18000.0,
+              6500.0,
+              1800.0,
+              18000.0,
+              3200.0,
+              2100.0,
+              18000.0,
+              8500.0,
+              22000.0,
+              18000.0,
+              4200.0
+            ]
+          },
+          "result": 160600.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_salary_from_bank",
+          "formula": "sum(verified_salary_credits) / count_of_salary_credits",
+          "inputs": {
+            "salary_credits_found": 6,
+            "salary_amounts": [
+              104500.0,
+              104500.0,
+              104500.0,
+              104500.0,
+              104500.0,
+              104500.0
+            ],
+            "sum_salary_credits": 627000.0
+          },
+          "result": 104500.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_emi_from_bank",
+          "formula": "sum(verified_emi_debits) / count_of_emi_debits",
+          "inputs": {
+            "emi_debits_found": 5,
+            "emi_amounts": [
+              18000.0,
+              18000.0,
+              18000.0,
+              18000.0,
+              18000.0
+            ],
+            "sum_emi_debits": 90000.0
+          },
+          "result": 18000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_credit_card_spends_6m",
+          "formula": "sum(credit_card_spend_transactions.amount)",
+          "inputs": {
+            "spend_transaction_count": 9,
+            "spend_amounts": [
+              4200.0,
+              950.0,
+              3500.0,
+              2800.0,
+              8500.0,
+              6500.0,
+              3200.0,
+              1800.0,
+              16500.0
+            ]
+          },
+          "result": 47950.0,
+          "units": "currency_inr",
+          "notes": null
+        }
+      ],
+      "scoring": {
+        "application_id": "test1_salaried_good",
+        "scoring_model": "personal_loan_v1",
+        "timestamp": "2026-09-06T21:58:29.276818Z",
+        "components": {
+          "credit_history": {
+            "raw_score": 80.67,
+            "weight": 0.25,
+            "contribution": 20.17,
+            "notes": "Scaled from bureau credit score of 784 (range 300-900)"
+          },
+          "repayment_behavior": {
+            "raw_score": 100.0,
+            "weight": 0.2,
+            "contribution": 20.0,
+            "notes": "Clean repayment track: 0 missed payments, no overdue debt"
+          },
+          "income_stability": {
+            "raw_score": 100.0,
+            "weight": 0.15,
+            "contribution": 15.0,
+            "notes": "Calculated from employment tenure and contract type; 6M bank statement verifies payroll deposits within 10%"
+          },
+          "debt_burden": {
+            "raw_score": 100.0,
+            "weight": 0.15,
+            "contribution": 15.0,
+            "notes": "Very low debt burden (DTI 14.4%)"
+          },
+          "employment_stability": {
+            "raw_score": 100.0,
+            "weight": 0.1,
+            "contribution": 10.0,
+            "notes": "Based on 5.2 recorded years of employment"
+          },
+          "affordability": {
+            "raw_score": 100.0,
+            "weight": 0.1,
+            "contribution": 10.0,
+            "notes": "Excellent affordability (EMI ratio 17.2%)"
+          },
+          "documentation_quality": {
+            "raw_score": 80.0,
+            "weight": 0.05,
+            "contribution": 4.0,
+            "notes": "Completeness ratio: 80.0%"
+          }
+        },
+        "final_score": 94.17,
+        "criticality": "LOW",
+        "calculation_trace": [
+          {
+            "component": "credit_history",
+            "formula": "max(0, min(100, (credit_score - 300) / 600 * 100))",
+            "raw_score": 80.67,
+            "weight": 0.25,
+            "contribution": 20.17,
+            "notes": "Scaled from bureau credit score of 784 (range 300-900)"
+          },
+          {
+            "component": "repayment_behavior",
+            "formula": "Rule-based penalty schedule on missed payments and overdue balance",
+            "raw_score": 100.0,
+            "weight": 0.2,
+            "contribution": 20.0,
+            "notes": "Clean repayment track: 0 missed payments, no overdue debt"
+          },
+          {
+            "component": "income_stability",
+            "formula": "features.income_stability_index + bank_statement_salary_reconciliation_adjustment",
+            "raw_score": 100.0,
+            "weight": 0.15,
+            "contribution": 15.0,
+            "notes": "Calculated from employment tenure and contract type; 6M bank statement verifies payroll deposits within 10%"
+          },
+          {
+            "component": "debt_burden",
+            "formula": "Stepwise inverse mapping of DTI ratio with CC utilization adjustment",
+            "raw_score": 100.0,
+            "weight": 0.15,
+            "contribution": 15.0,
+            "notes": "Very low debt burden (DTI 14.4%)"
+          },
+          {
+            "component": "employment_stability",
+            "formula": "Tiered mapping based on employment tenure in years",
+            "raw_score": 100.0,
+            "weight": 0.1,
+            "contribution": 10.0,
+            "notes": "5.2 years tenure"
+          },
+          {
+            "component": "affordability",
+            "formula": "Stepwise mapping of proposed EMI to Net Income ratio",
+            "raw_score": 100.0,
+            "weight": 0.1,
+            "contribution": 10.0,
+            "notes": "Excellent affordability (EMI ratio 17.2%)"
+          },
+          {
+            "component": "documentation_quality",
+            "formula": "documentation_completeness * 100",
+            "raw_score": 80.0,
+            "weight": 0.05,
+            "contribution": 4.0,
+            "notes": "80.0% complete"
+          }
+        ]
+      },
+      "eligibility": {
+        "application_id": "test1_salaried_good",
+        "status": "ELIGIBLE",
+        "passed_rules": [
+          "MANDATORY_DOC_IDENTITY_VERIFIED",
+          "MANDATORY_DOC_INCOME_DOCUMENT_AVAILABLE",
+          "MIN_CREDIT_SCORE_600",
+          "MAX_DTI_0.6",
+          "LOAN_AMOUNT_WITHIN_PRODUCT_CAP",
+          "MIN_INCOME_20000.0",
+          "MISSED_PAYMENTS_WITHIN_LIMIT (Got 0)"
+        ],
+        "failed_rules": [],
+        "manual_review_reasons": []
+      },
+      "validation": {
+        "status": "VALID",
+        "is_valid": true,
+        "issues": []
+      }
+    },
+    "test2_salaried_bad": {
+      "features": [
+        {
+          "feature": "debt_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_gross_income",
+          "inputs": {
+            "existing_monthly_emi": 22000.0,
+            "monthly_gross_income": 45000.0
+          },
+          "result": 0.4889,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "emi_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_net_income",
+          "inputs": {
+            "existing_monthly_emi": 22000.0,
+            "monthly_income": 38000.0
+          },
+          "result": 0.5789,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "loan_to_income_ratio",
+          "formula": "requested_loan_amount / annual_income",
+          "inputs": {
+            "requested_loan_amount": 400000.0,
+            "annual_income": 540000.0
+          },
+          "result": 0.7407,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "credit_card_utilization",
+          "formula": "credit_card_total_balance / credit_card_limit",
+          "inputs": {
+            "credit_card_total_balance": 98500.0,
+            "credit_card_limit": 100000.0
+          },
+          "result": 0.985,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "income_stability_index",
+          "formula": "min(100.0, employment_years * 20.0 + permanent_bonus)",
+          "inputs": {
+            "employment_duration_years": 1.2,
+            "employment_type": "Contract Staff"
+          },
+          "result": 24.0,
+          "units": "index_points",
+          "notes": null
+        },
+        {
+          "feature": "documentation_completeness",
+          "formula": "available_verified_documents / total_required_documents",
+          "inputs": {
+            "available_count": 3,
+            "total_required": 5
+          },
+          "result": 0.6,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_credits_6m",
+          "formula": "sum(credit_transactions.amount)",
+          "inputs": {
+            "credit_transaction_count": 6,
+            "credit_amounts": [
+              38000.0,
+              38000.0,
+              38000.0,
+              38000.0,
+              38000.0,
+              38000.0
+            ]
+          },
+          "result": 228000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_debits_6m",
+          "formula": "sum(debit_transactions.amount)",
+          "inputs": {
+            "debit_transaction_count": 11,
+            "debit_amounts": [
+              2400.0,
+              22000.0,
+              1200.0,
+              22000.0,
+              3500.0,
+              22000.0,
+              4100.0,
+              22000.0,
+              2500.0,
+              22000.0,
+              2800.0
+            ]
+          },
+          "result": 126500.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_salary_from_bank",
+          "formula": "sum(verified_salary_credits) / count_of_salary_credits",
+          "inputs": {
+            "salary_credits_found": 6,
+            "salary_amounts": [
+              38000.0,
+              38000.0,
+              38000.0,
+              38000.0,
+              38000.0,
+              38000.0
+            ],
+            "sum_salary_credits": 228000.0
+          },
+          "result": 38000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_emi_from_bank",
+          "formula": "sum(verified_emi_debits) / count_of_emi_debits",
+          "inputs": {
+            "emi_debits_found": 5,
+            "emi_amounts": [
+              22000.0,
+              22000.0,
+              22000.0,
+              22000.0,
+              22000.0
+            ],
+            "sum_emi_debits": 110000.0
+          },
+          "result": 22000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_credit_card_spends_6m",
+          "formula": "sum(credit_card_spend_transactions.amount)",
+          "inputs": {
+            "spend_transaction_count": 6,
+            "spend_amounts": [
+              12500.0,
+              8500.0,
+              24000.0,
+              6500.0,
+              28000.0,
+              19000.0
+            ]
+          },
+          "result": 98500.0,
+          "units": "currency_inr",
+          "notes": null
+        }
+      ],
+      "scoring": {
+        "application_id": "test2_salaried_bad",
+        "scoring_model": "personal_loan_v1",
+        "timestamp": "2026-09-06T21:58:29.277061Z",
+        "components": {
+          "credit_history": {
+            "raw_score": 41.67,
+            "weight": 0.25,
+            "contribution": 10.42,
+            "notes": "Scaled from bureau credit score of 550 (range 300-900)"
+          },
+          "repayment_behavior": {
+            "raw_score": 5.0,
+            "weight": 0.2,
+            "contribution": 1.0,
+            "notes": "Multiple delinquencies: 4 missed payments, overdue amount \u20b935,000.00"
+          },
+          "income_stability": {
+            "raw_score": 29.0,
+            "weight": 0.15,
+            "contribution": 4.35,
+            "notes": "Calculated from employment tenure and contract type; 6M bank statement verifies payroll deposits within 10%"
+          },
+          "debt_burden": {
+            "raw_score": 25.0,
+            "weight": 0.15,
+            "contribution": 3.75,
+            "notes": "High debt burden (DTI 48.9%); high CC utilization penalty (98.5%)"
+          },
+          "employment_stability": {
+            "raw_score": 60.0,
+            "weight": 0.1,
+            "contribution": 6.0,
+            "notes": "Based on 1.2 recorded years of employment"
+          },
+          "affordability": {
+            "raw_score": 20.0,
+            "weight": 0.1,
+            "contribution": 2.0,
+            "notes": "Strained affordability (EMI ratio 57.9%)"
+          },
+          "documentation_quality": {
+            "raw_score": 60.0,
+            "weight": 0.05,
+            "contribution": 3.0,
+            "notes": "Completeness ratio: 60.0%"
+          }
+        },
+        "final_score": 30.52,
+        "criticality": "HIGH",
+        "calculation_trace": [
+          {
+            "component": "credit_history",
+            "formula": "max(0, min(100, (credit_score - 300) / 600 * 100))",
+            "raw_score": 41.67,
+            "weight": 0.25,
+            "contribution": 10.42,
+            "notes": "Scaled from bureau credit score of 550 (range 300-900)"
+          },
+          {
+            "component": "repayment_behavior",
+            "formula": "Rule-based penalty schedule on missed payments and overdue balance",
+            "raw_score": 5.0,
+            "weight": 0.2,
+            "contribution": 1.0,
+            "notes": "Multiple delinquencies: 4 missed payments, overdue amount \u20b935,000.00"
+          },
+          {
+            "component": "income_stability",
+            "formula": "features.income_stability_index + bank_statement_salary_reconciliation_adjustment",
+            "raw_score": 29.0,
+            "weight": 0.15,
+            "contribution": 4.35,
+            "notes": "Calculated from employment tenure and contract type; 6M bank statement verifies payroll deposits within 10%"
+          },
+          {
+            "component": "debt_burden",
+            "formula": "Stepwise inverse mapping of DTI ratio with CC utilization adjustment",
+            "raw_score": 25.0,
+            "weight": 0.15,
+            "contribution": 3.75,
+            "notes": "High debt burden (DTI 48.9%); high CC utilization penalty (98.5%)"
+          },
+          {
+            "component": "employment_stability",
+            "formula": "Tiered mapping based on employment tenure in years",
+            "raw_score": 60.0,
+            "weight": 0.1,
+            "contribution": 6.0,
+            "notes": "1.2 years tenure"
+          },
+          {
+            "component": "affordability",
+            "formula": "Stepwise mapping of proposed EMI to Net Income ratio",
+            "raw_score": 20.0,
+            "weight": 0.1,
+            "contribution": 2.0,
+            "notes": "Strained affordability (EMI ratio 57.9%)"
+          },
+          {
+            "component": "documentation_quality",
+            "formula": "documentation_completeness * 100",
+            "raw_score": 60.0,
+            "weight": 0.05,
+            "contribution": 3.0,
+            "notes": "60.0% complete"
+          }
+        ]
+      },
+      "eligibility": {
+        "application_id": "test2_salaried_bad",
+        "status": "INELIGIBLE",
+        "passed_rules": [
+          "MANDATORY_DOC_IDENTITY_VERIFIED",
+          "MANDATORY_DOC_INCOME_DOCUMENT_AVAILABLE",
+          "MAX_DTI_0.6",
+          "LOAN_AMOUNT_WITHIN_PRODUCT_CAP",
+          "MIN_INCOME_20000.0"
+        ],
+        "failed_rules": [
+          "CREDIT_SCORE_BELOW_THRESHOLD (Got 550, Required 600)",
+          "EXCESSIVE_MISSED_PAYMENTS (Got 4, Max 2)"
+        ],
+        "manual_review_reasons": []
+      },
+      "validation": {
+        "status": "VALID",
+        "is_valid": true,
+        "issues": []
+      }
+    },
+    "test3_business_good": {
+      "features": [
+        {
+          "feature": "debt_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_gross_income",
+          "inputs": {
+            "existing_monthly_emi": 25000.0,
+            "monthly_gross_income": null
+          },
+          "result": null,
+          "units": "ratio",
+          "notes": "Missing required input (existing_monthly_emi or monthly_gross_income)"
+        },
+        {
+          "feature": "emi_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_net_income",
+          "inputs": {
+            "existing_monthly_emi": 25000.0,
+            "monthly_income": 150000.0
+          },
+          "result": 0.1667,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "loan_to_income_ratio",
+          "formula": "requested_loan_amount / annual_income",
+          "inputs": {
+            "requested_loan_amount": 1500000.0,
+            "annual_income": 1800000.0
+          },
+          "result": 0.8333,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "debt_to_revenue_ratio",
+          "formula": "outstanding_debt / annual_revenue",
+          "inputs": {
+            "outstanding_debt": 550000.0,
+            "annual_revenue": 5200000.0
+          },
+          "result": 0.1058,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "credit_card_utilization",
+          "formula": "credit_card_total_balance / credit_card_limit",
+          "inputs": {
+            "credit_card_total_balance": 45000.0,
+            "credit_card_limit": 500000.0
+          },
+          "result": 0.09,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "income_stability_index",
+          "formula": "min(100.0, employment_years * 20.0 + permanent_bonus)",
+          "inputs": {
+            "employment_duration_years": 7.0,
+            "employment_type": "Sole Proprietorship"
+          },
+          "result": 100.0,
+          "units": "index_points",
+          "notes": null
+        },
+        {
+          "feature": "documentation_completeness",
+          "formula": "available_verified_documents / total_required_documents",
+          "inputs": {
+            "available_count": 5,
+            "total_required": 5
+          },
+          "result": 1.0,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_credits_6m",
+          "formula": "sum(credit_transactions.amount)",
+          "inputs": {
+            "credit_transaction_count": 6,
+            "credit_amounts": [
+              420000.0,
+              460000.0,
+              480000.0,
+              390000.0,
+              510000.0,
+              450000.0
+            ]
+          },
+          "result": 2710000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_debits_6m",
+          "formula": "sum(debit_transactions.amount)",
+          "inputs": {
+            "debit_transaction_count": 11,
+            "debit_amounts": [
+              180000.0,
+              18000.0,
+              25000.0,
+              14000.0,
+              25000.0,
+              4500.0,
+              25000.0,
+              78000.0,
+              25000.0,
+              6500.0,
+              25000.0
+            ]
+          },
+          "result": 426000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_emi_from_bank",
+          "formula": "sum(verified_emi_debits) / count_of_emi_debits",
+          "inputs": {
+            "emi_debits_found": 5,
+            "emi_amounts": [
+              25000.0,
+              25000.0,
+              25000.0,
+              25000.0,
+              25000.0
+            ],
+            "sum_emi_debits": 125000.0
+          },
+          "result": 25000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_credit_card_spends_6m",
+          "formula": "sum(credit_card_spend_transactions.amount)",
+          "inputs": {
+            "spend_transaction_count": 5,
+            "spend_amounts": [
+              14500.0,
+              18000.0,
+              12500.0,
+              8500.0,
+              36500.0
+            ]
+          },
+          "result": 90000.0,
+          "units": "currency_inr",
+          "notes": null
+        }
+      ],
+      "scoring": {
+        "application_id": "test3_business_good",
+        "scoring_model": "personal_loan_v1",
+        "timestamp": "2026-09-06T21:58:29.277256Z",
+        "components": {
+          "credit_history": {
+            "raw_score": 78.33,
+            "weight": 0.25,
+            "contribution": 19.58,
+            "notes": "Scaled from bureau credit score of 770 (range 300-900)"
+          },
+          "repayment_behavior": {
+            "raw_score": 100.0,
+            "weight": 0.2,
+            "contribution": 20.0,
+            "notes": "Clean repayment track: 0 missed payments, no overdue debt"
+          },
+          "income_stability": {
+            "raw_score": 100.0,
+            "weight": 0.15,
+            "contribution": 15.0,
+            "notes": "Calculated from employment tenure and contract type"
+          },
+          "debt_burden": {
+            "raw_score": 50.0,
+            "weight": 0.15,
+            "contribution": 7.5,
+            "notes": "DTI unavailable; neutral baseline assigned"
+          },
+          "employment_stability": {
+            "raw_score": 100.0,
+            "weight": 0.1,
+            "contribution": 10.0,
+            "notes": "Based on 7.0 recorded years of employment"
+          },
+          "affordability": {
+            "raw_score": 100.0,
+            "weight": 0.1,
+            "contribution": 10.0,
+            "notes": "Excellent affordability (EMI ratio 16.7%)"
+          },
+          "documentation_quality": {
+            "raw_score": 100.0,
+            "weight": 0.05,
+            "contribution": 5.0,
+            "notes": "Completeness ratio: 100.0%"
+          }
+        },
+        "final_score": 87.08,
+        "criticality": "LOW",
+        "calculation_trace": [
+          {
+            "component": "credit_history",
+            "formula": "max(0, min(100, (credit_score - 300) / 600 * 100))",
+            "raw_score": 78.33,
+            "weight": 0.25,
+            "contribution": 19.58,
+            "notes": "Scaled from bureau credit score of 770 (range 300-900)"
+          },
+          {
+            "component": "repayment_behavior",
+            "formula": "Rule-based penalty schedule on missed payments and overdue balance",
+            "raw_score": 100.0,
+            "weight": 0.2,
+            "contribution": 20.0,
+            "notes": "Clean repayment track: 0 missed payments, no overdue debt"
+          },
+          {
+            "component": "income_stability",
+            "formula": "features.income_stability_index + bank_statement_salary_reconciliation_adjustment",
+            "raw_score": 100.0,
+            "weight": 0.15,
+            "contribution": 15.0,
+            "notes": "Calculated from employment tenure and contract type"
+          },
+          {
+            "component": "debt_burden",
+            "formula": "Stepwise inverse mapping of DTI ratio with CC utilization adjustment",
+            "raw_score": 50.0,
+            "weight": 0.15,
+            "contribution": 7.5,
+            "notes": "DTI unavailable; neutral baseline assigned"
+          },
+          {
+            "component": "employment_stability",
+            "formula": "Tiered mapping based on employment tenure in years",
+            "raw_score": 100.0,
+            "weight": 0.1,
+            "contribution": 10.0,
+            "notes": "7.0 years tenure"
+          },
+          {
+            "component": "affordability",
+            "formula": "Stepwise mapping of proposed EMI to Net Income ratio",
+            "raw_score": 100.0,
+            "weight": 0.1,
+            "contribution": 10.0,
+            "notes": "Excellent affordability (EMI ratio 16.7%)"
+          },
+          {
+            "component": "documentation_quality",
+            "formula": "documentation_completeness * 100",
+            "raw_score": 100.0,
+            "weight": 0.05,
+            "contribution": 5.0,
+            "notes": "100.0% complete"
+          }
+        ]
+      },
+      "eligibility": {
+        "application_id": "test3_business_good",
+        "status": "ELIGIBLE",
+        "passed_rules": [
+          "MANDATORY_DOC_IDENTITY_VERIFIED",
+          "MANDATORY_DOC_INCOME_DOCUMENT_AVAILABLE",
+          "MIN_CREDIT_SCORE_600",
+          "LOAN_AMOUNT_WITHIN_PRODUCT_CAP",
+          "MISSED_PAYMENTS_WITHIN_LIMIT (Got 0)"
+        ],
+        "failed_rules": [],
+        "manual_review_reasons": []
+      },
+      "validation": {
+        "status": "VALID",
+        "is_valid": true,
+        "issues": []
+      }
+    },
+    "test4_business_bad": {
+      "features": [
+        {
+          "feature": "debt_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_gross_income",
+          "inputs": {
+            "existing_monthly_emi": 58000.0,
+            "monthly_gross_income": null
+          },
+          "result": null,
+          "units": "ratio",
+          "notes": "Missing required input (existing_monthly_emi or monthly_gross_income)"
+        },
+        {
+          "feature": "emi_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_net_income",
+          "inputs": {
+            "existing_monthly_emi": 58000.0,
+            "monthly_income": 20000.0
+          },
+          "result": 2.9,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "loan_to_income_ratio",
+          "formula": "requested_loan_amount / annual_income",
+          "inputs": {
+            "requested_loan_amount": 2500000.0,
+            "annual_income": 240000.0
+          },
+          "result": 10.4167,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "debt_to_revenue_ratio",
+          "formula": "outstanding_debt / annual_revenue",
+          "inputs": {
+            "outstanding_debt": 3200000.0,
+            "annual_revenue": 1800000.0
+          },
+          "result": 1.7778,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "credit_card_utilization",
+          "formula": "credit_card_total_balance / credit_card_limit",
+          "inputs": {
+            "credit_card_total_balance": 45200.0,
+            "credit_card_limit": 50000.0
+          },
+          "result": 0.904,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "income_stability_index",
+          "formula": "min(100.0, employment_years * 20.0 + permanent_bonus)",
+          "inputs": {
+            "employment_duration_years": 3.0,
+            "employment_type": ""
+          },
+          "result": 60.0,
+          "units": "index_points",
+          "notes": null
+        },
+        {
+          "feature": "documentation_completeness",
+          "formula": "available_verified_documents / total_required_documents",
+          "inputs": {
+            "available_count": 3,
+            "total_required": 5
+          },
+          "result": 0.6,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_credits_6m",
+          "formula": "sum(credit_transactions.amount)",
+          "inputs": {
+            "credit_transaction_count": 3,
+            "credit_amounts": [
+              65000.0,
+              42000.0,
+              50000.0
+            ]
+          },
+          "result": 157000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_debits_6m",
+          "formula": "sum(debit_transactions.amount)",
+          "inputs": {
+            "debit_transaction_count": 7,
+            "debit_amounts": [
+              58000.0,
+              8500.0,
+              1500.0,
+              58000.0,
+              3200.0,
+              58000.0,
+              4500.0
+            ]
+          },
+          "result": 191700.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_emi_from_bank",
+          "formula": "sum(verified_emi_debits) / count_of_emi_debits",
+          "inputs": {
+            "emi_debits_found": 3,
+            "emi_amounts": [
+              58000.0,
+              58000.0,
+              58000.0
+            ],
+            "sum_emi_debits": 174000.0
+          },
+          "result": 58000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_credit_card_spends_6m",
+          "formula": "sum(credit_card_spend_transactions.amount)",
+          "inputs": {
+            "spend_transaction_count": 5,
+            "spend_amounts": [
+              6500.0,
+              18000.0,
+              4200.0,
+              1500.0,
+              15000.0
+            ]
+          },
+          "result": 45200.0,
+          "units": "currency_inr",
+          "notes": null
+        }
+      ],
+      "scoring": {
+        "application_id": "test4_business_bad",
+        "scoring_model": "personal_loan_v1",
+        "timestamp": "2026-09-06T21:58:29.277413Z",
+        "components": {
+          "credit_history": {
+            "raw_score": 46.67,
+            "weight": 0.25,
+            "contribution": 11.67,
+            "notes": "Scaled from bureau credit score of 580 (range 300-900)"
+          },
+          "repayment_behavior": {
+            "raw_score": 5.0,
+            "weight": 0.2,
+            "contribution": 1.0,
+            "notes": "Multiple delinquencies: 2 missed payments, overdue amount \u20b980,000.00"
+          },
+          "income_stability": {
+            "raw_score": 60.0,
+            "weight": 0.15,
+            "contribution": 9.0,
+            "notes": "Calculated from employment tenure and contract type"
+          },
+          "debt_burden": {
+            "raw_score": 40.0,
+            "weight": 0.15,
+            "contribution": 6.0,
+            "notes": "DTI unavailable; neutral baseline assigned; high CC utilization penalty (90.4%)"
+          },
+          "employment_stability": {
+            "raw_score": 80.0,
+            "weight": 0.1,
+            "contribution": 8.0,
+            "notes": "Based on 3.0 recorded years of employment"
+          },
+          "affordability": {
+            "raw_score": 20.0,
+            "weight": 0.1,
+            "contribution": 2.0,
+            "notes": "Strained affordability (EMI ratio 290.0%)"
+          },
+          "documentation_quality": {
+            "raw_score": 60.0,
+            "weight": 0.05,
+            "contribution": 3.0,
+            "notes": "Completeness ratio: 60.0%"
+          }
+        },
+        "final_score": 40.67,
+        "criticality": "HIGH",
+        "calculation_trace": [
+          {
+            "component": "credit_history",
+            "formula": "max(0, min(100, (credit_score - 300) / 600 * 100))",
+            "raw_score": 46.67,
+            "weight": 0.25,
+            "contribution": 11.67,
+            "notes": "Scaled from bureau credit score of 580 (range 300-900)"
+          },
+          {
+            "component": "repayment_behavior",
+            "formula": "Rule-based penalty schedule on missed payments and overdue balance",
+            "raw_score": 5.0,
+            "weight": 0.2,
+            "contribution": 1.0,
+            "notes": "Multiple delinquencies: 2 missed payments, overdue amount \u20b980,000.00"
+          },
+          {
+            "component": "income_stability",
+            "formula": "features.income_stability_index + bank_statement_salary_reconciliation_adjustment",
+            "raw_score": 60.0,
+            "weight": 0.15,
+            "contribution": 9.0,
+            "notes": "Calculated from employment tenure and contract type"
+          },
+          {
+            "component": "debt_burden",
+            "formula": "Stepwise inverse mapping of DTI ratio with CC utilization adjustment",
+            "raw_score": 40.0,
+            "weight": 0.15,
+            "contribution": 6.0,
+            "notes": "DTI unavailable; neutral baseline assigned; high CC utilization penalty (90.4%)"
+          },
+          {
+            "component": "employment_stability",
+            "formula": "Tiered mapping based on employment tenure in years",
+            "raw_score": 80.0,
+            "weight": 0.1,
+            "contribution": 8.0,
+            "notes": "3.0 years tenure"
+          },
+          {
+            "component": "affordability",
+            "formula": "Stepwise mapping of proposed EMI to Net Income ratio",
+            "raw_score": 20.0,
+            "weight": 0.1,
+            "contribution": 2.0,
+            "notes": "Strained affordability (EMI ratio 290.0%)"
+          },
+          {
+            "component": "documentation_quality",
+            "formula": "documentation_completeness * 100",
+            "raw_score": 60.0,
+            "weight": 0.05,
+            "contribution": 3.0,
+            "notes": "60.0% complete"
+          }
+        ]
+      },
+      "eligibility": {
+        "application_id": "test4_business_bad",
+        "status": "INELIGIBLE",
+        "passed_rules": [
+          "MANDATORY_DOC_INCOME_DOCUMENT_AVAILABLE",
+          "LOAN_AMOUNT_WITHIN_PRODUCT_CAP",
+          "MISSED_PAYMENTS_WITHIN_LIMIT (Got 2)"
+        ],
+        "failed_rules": [
+          "MISSING_MANDATORY_DOC_IDENTITY_VERIFIED",
+          "CREDIT_SCORE_BELOW_THRESHOLD (Got 580, Required 600)"
+        ],
+        "manual_review_reasons": []
+      },
+      "validation": {
+        "status": "VALID",
+        "is_valid": true,
+        "issues": []
+      }
+    },
+    "test5_salaried_moderate_dti": {
+      "features": [
+        {
+          "feature": "debt_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_gross_income",
+          "inputs": {
+            "existing_monthly_emi": 16000.0,
+            "monthly_gross_income": 72000.0
+          },
+          "result": 0.2222,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "emi_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_net_income",
+          "inputs": {
+            "existing_monthly_emi": 16000.0,
+            "monthly_income": 65000.0
+          },
+          "result": 0.2462,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "loan_to_income_ratio",
+          "formula": "requested_loan_amount / annual_income",
+          "inputs": {
+            "requested_loan_amount": 300000.0,
+            "annual_income": 864000.0
+          },
+          "result": 0.3472,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "credit_card_utilization",
+          "formula": "credit_card_total_balance / credit_card_limit",
+          "inputs": {
+            "credit_card_total_balance": 48000.0,
+            "credit_card_limit": 150000.0
+          },
+          "result": 0.32,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "income_stability_index",
+          "formula": "min(100.0, employment_years * 20.0 + permanent_bonus)",
+          "inputs": {
+            "employment_duration_years": 2.5,
+            "employment_type": "Permanent Salaried"
+          },
+          "result": 60.0,
+          "units": "index_points",
+          "notes": null
+        },
+        {
+          "feature": "documentation_completeness",
+          "formula": "available_verified_documents / total_required_documents",
+          "inputs": {
+            "available_count": 4,
+            "total_required": 5
+          },
+          "result": 0.8,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_credits_6m",
+          "formula": "sum(credit_transactions.amount)",
+          "inputs": {
+            "credit_transaction_count": 6,
+            "credit_amounts": [
+              65000.0,
+              65000.0,
+              65000.0,
+              65000.0,
+              65000.0,
+              65000.0
+            ]
+          },
+          "result": 390000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_debits_6m",
+          "formula": "sum(debit_transactions.amount)",
+          "inputs": {
+            "debit_transaction_count": 12,
+            "debit_amounts": [
+              16000.0,
+              3400.0,
+              16000.0,
+              4200.0,
+              16000.0,
+              8500.0,
+              16000.0,
+              15200.0,
+              16000.0,
+              6800.0,
+              16000.0,
+              9400.0
+            ]
+          },
+          "result": 143500.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_salary_from_bank",
+          "formula": "sum(verified_salary_credits) / count_of_salary_credits",
+          "inputs": {
+            "salary_credits_found": 6,
+            "salary_amounts": [
+              65000.0,
+              65000.0,
+              65000.0,
+              65000.0,
+              65000.0,
+              65000.0
+            ],
+            "sum_salary_credits": 390000.0
+          },
+          "result": 65000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_emi_from_bank",
+          "formula": "sum(verified_emi_debits) / count_of_emi_debits",
+          "inputs": {
+            "emi_debits_found": 7,
+            "emi_amounts": [
+              16000.0,
+              16000.0,
+              16000.0,
+              8500.0,
+              16000.0,
+              16000.0,
+              16000.0
+            ],
+            "sum_emi_debits": 104500.0
+          },
+          "result": 14928.57,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_credit_card_spends_6m",
+          "formula": "sum(credit_card_spend_transactions.amount)",
+          "inputs": {
+            "spend_transaction_count": 7,
+            "spend_amounts": [
+              4200.0,
+              8500.0,
+              12400.0,
+              7800.0,
+              24000.0,
+              14000.0,
+              25000.0
+            ]
+          },
+          "result": 95900.0,
+          "units": "currency_inr",
+          "notes": null
+        }
+      ],
+      "scoring": {
+        "application_id": "test5_salaried_moderate_dti",
+        "scoring_model": "personal_loan_v1",
+        "timestamp": "2026-09-06T21:58:29.277952Z",
+        "components": {
+          "credit_history": {
+            "raw_score": 68.33,
+            "weight": 0.25,
+            "contribution": 17.08,
+            "notes": "Scaled from bureau credit score of 710 (range 300-900)"
+          },
+          "repayment_behavior": {
+            "raw_score": 70.0,
+            "weight": 0.2,
+            "contribution": 14.0,
+            "notes": "1 historical missed payment recorded"
+          },
+          "income_stability": {
+            "raw_score": 65.0,
+            "weight": 0.15,
+            "contribution": 9.75,
+            "notes": "Calculated from employment tenure and contract type; 6M bank statement verifies payroll deposits within 10%"
+          },
+          "debt_burden": {
+            "raw_score": 85.0,
+            "weight": 0.15,
+            "contribution": 12.75,
+            "notes": "Low debt burden (DTI 22.2%)"
+          },
+          "employment_stability": {
+            "raw_score": 60.0,
+            "weight": 0.1,
+            "contribution": 6.0,
+            "notes": "Based on 2.5 recorded years of employment"
+          },
+          "affordability": {
+            "raw_score": 80.0,
+            "weight": 0.1,
+            "contribution": 8.0,
+            "notes": "Healthy affordability (EMI ratio 24.6%)"
+          },
+          "documentation_quality": {
+            "raw_score": 80.0,
+            "weight": 0.05,
+            "contribution": 4.0,
+            "notes": "Completeness ratio: 80.0%"
+          }
+        },
+        "final_score": 71.58,
+        "criticality": "MED",
+        "calculation_trace": [
+          {
+            "component": "credit_history",
+            "formula": "max(0, min(100, (credit_score - 300) / 600 * 100))",
+            "raw_score": 68.33,
+            "weight": 0.25,
+            "contribution": 17.08,
+            "notes": "Scaled from bureau credit score of 710 (range 300-900)"
+          },
+          {
+            "component": "repayment_behavior",
+            "formula": "Rule-based penalty schedule on missed payments and overdue balance",
+            "raw_score": 70.0,
+            "weight": 0.2,
+            "contribution": 14.0,
+            "notes": "1 historical missed payment recorded"
+          },
+          {
+            "component": "income_stability",
+            "formula": "features.income_stability_index + bank_statement_salary_reconciliation_adjustment",
+            "raw_score": 65.0,
+            "weight": 0.15,
+            "contribution": 9.75,
+            "notes": "Calculated from employment tenure and contract type; 6M bank statement verifies payroll deposits within 10%"
+          },
+          {
+            "component": "debt_burden",
+            "formula": "Stepwise inverse mapping of DTI ratio with CC utilization adjustment",
+            "raw_score": 85.0,
+            "weight": 0.15,
+            "contribution": 12.75,
+            "notes": "Low debt burden (DTI 22.2%)"
+          },
+          {
+            "component": "employment_stability",
+            "formula": "Tiered mapping based on employment tenure in years",
+            "raw_score": 60.0,
+            "weight": 0.1,
+            "contribution": 6.0,
+            "notes": "2.5 years tenure"
+          },
+          {
+            "component": "affordability",
+            "formula": "Stepwise mapping of proposed EMI to Net Income ratio",
+            "raw_score": 80.0,
+            "weight": 0.1,
+            "contribution": 8.0,
+            "notes": "Healthy affordability (EMI ratio 24.6%)"
+          },
+          {
+            "component": "documentation_quality",
+            "formula": "documentation_completeness * 100",
+            "raw_score": 80.0,
+            "weight": 0.05,
+            "contribution": 4.0,
+            "notes": "80.0% complete"
+          }
+        ]
+      },
+      "eligibility": {
+        "application_id": "test5_salaried_moderate_dti",
+        "status": "ELIGIBLE",
+        "passed_rules": [
+          "MANDATORY_DOC_IDENTITY_VERIFIED",
+          "MANDATORY_DOC_INCOME_DOCUMENT_AVAILABLE",
+          "MIN_CREDIT_SCORE_600",
+          "MAX_DTI_0.6",
+          "LOAN_AMOUNT_WITHIN_PRODUCT_CAP",
+          "MIN_INCOME_20000.0",
+          "MISSED_PAYMENTS_WITHIN_LIMIT (Got 1)"
+        ],
+        "failed_rules": [],
+        "manual_review_reasons": []
+      },
+      "validation": {
+        "status": "VALID",
+        "is_valid": true,
+        "issues": []
+      }
+    },
+    "test6_salaried_fair_credit_high_cc": {
+      "features": [
+        {
+          "feature": "debt_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_gross_income",
+          "inputs": {
+            "existing_monthly_emi": 8000.0,
+            "monthly_gross_income": 62000.0
+          },
+          "result": 0.129,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "emi_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_net_income",
+          "inputs": {
+            "existing_monthly_emi": 8000.0,
+            "monthly_income": 55000.0
+          },
+          "result": 0.1455,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "loan_to_income_ratio",
+          "formula": "requested_loan_amount / annual_income",
+          "inputs": {
+            "requested_loan_amount": 250000.0,
+            "annual_income": 744000.0
+          },
+          "result": 0.336,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "credit_card_utilization",
+          "formula": "credit_card_total_balance / credit_card_limit",
+          "inputs": {
+            "credit_card_total_balance": 68000.0,
+            "credit_card_limit": 100000.0
+          },
+          "result": 0.68,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "income_stability_index",
+          "formula": "min(100.0, employment_years * 20.0 + permanent_bonus)",
+          "inputs": {
+            "employment_duration_years": 1.5,
+            "employment_type": "Permanent Salaried"
+          },
+          "result": 40.0,
+          "units": "index_points",
+          "notes": null
+        },
+        {
+          "feature": "documentation_completeness",
+          "formula": "available_verified_documents / total_required_documents",
+          "inputs": {
+            "available_count": 4,
+            "total_required": 5
+          },
+          "result": 0.8,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_credits_6m",
+          "formula": "sum(credit_transactions.amount)",
+          "inputs": {
+            "credit_transaction_count": 6,
+            "credit_amounts": [
+              55000.0,
+              55000.0,
+              55000.0,
+              55000.0,
+              55000.0,
+              55000.0
+            ]
+          },
+          "result": 330000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_debits_6m",
+          "formula": "sum(debit_transactions.amount)",
+          "inputs": {
+            "debit_transaction_count": 12,
+            "debit_amounts": [
+              8000.0,
+              2800.0,
+              8000.0,
+              1500.0,
+              8000.0,
+              10000.0,
+              8000.0,
+              4200.0,
+              8000.0,
+              12000.0,
+              8000.0,
+              5500.0
+            ]
+          },
+          "result": 84000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_salary_from_bank",
+          "formula": "sum(verified_salary_credits) / count_of_salary_credits",
+          "inputs": {
+            "salary_credits_found": 6,
+            "salary_amounts": [
+              55000.0,
+              55000.0,
+              55000.0,
+              55000.0,
+              55000.0,
+              55000.0
+            ],
+            "sum_salary_credits": 330000.0
+          },
+          "result": 55000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_emi_from_bank",
+          "formula": "sum(verified_emi_debits) / count_of_emi_debits",
+          "inputs": {
+            "emi_debits_found": 6,
+            "emi_amounts": [
+              8000.0,
+              8000.0,
+              8000.0,
+              8000.0,
+              8000.0,
+              8000.0
+            ],
+            "sum_emi_debits": 48000.0
+          },
+          "result": 8000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_credit_card_spends_6m",
+          "formula": "sum(credit_card_spend_transactions.amount)",
+          "inputs": {
+            "spend_transaction_count": 7,
+            "spend_amounts": [
+              18000.0,
+              14500.0,
+              16000.0,
+              12000.0,
+              22000.0,
+              11500.0,
+              14000.0
+            ]
+          },
+          "result": 108000.0,
+          "units": "currency_inr",
+          "notes": null
+        }
+      ],
+      "scoring": {
+        "application_id": "test6_salaried_fair_credit_high_cc",
+        "scoring_model": "personal_loan_v1",
+        "timestamp": "2026-09-06T21:58:29.278106Z",
+        "components": {
+          "credit_history": {
+            "raw_score": 61.67,
+            "weight": 0.25,
+            "contribution": 15.42,
+            "notes": "Scaled from bureau credit score of 670 (range 300-900)"
+          },
+          "repayment_behavior": {
+            "raw_score": 100.0,
+            "weight": 0.2,
+            "contribution": 20.0,
+            "notes": "Clean repayment track: 0 missed payments, no overdue debt"
+          },
+          "income_stability": {
+            "raw_score": 45.0,
+            "weight": 0.15,
+            "contribution": 6.75,
+            "notes": "Calculated from employment tenure and contract type; 6M bank statement verifies payroll deposits within 10%"
+          },
+          "debt_burden": {
+            "raw_score": 100.0,
+            "weight": 0.15,
+            "contribution": 15.0,
+            "notes": "Very low debt burden (DTI 12.9%)"
+          },
+          "employment_stability": {
+            "raw_score": 60.0,
+            "weight": 0.1,
+            "contribution": 6.0,
+            "notes": "Based on 1.5 recorded years of employment"
+          },
+          "affordability": {
+            "raw_score": 100.0,
+            "weight": 0.1,
+            "contribution": 10.0,
+            "notes": "Excellent affordability (EMI ratio 14.5%)"
+          },
+          "documentation_quality": {
+            "raw_score": 80.0,
+            "weight": 0.05,
+            "contribution": 4.0,
+            "notes": "Completeness ratio: 80.0%"
+          }
+        },
+        "final_score": 77.17,
+        "criticality": "MED",
+        "calculation_trace": [
+          {
+            "component": "credit_history",
+            "formula": "max(0, min(100, (credit_score - 300) / 600 * 100))",
+            "raw_score": 61.67,
+            "weight": 0.25,
+            "contribution": 15.42,
+            "notes": "Scaled from bureau credit score of 670 (range 300-900)"
+          },
+          {
+            "component": "repayment_behavior",
+            "formula": "Rule-based penalty schedule on missed payments and overdue balance",
+            "raw_score": 100.0,
+            "weight": 0.2,
+            "contribution": 20.0,
+            "notes": "Clean repayment track: 0 missed payments, no overdue debt"
+          },
+          {
+            "component": "income_stability",
+            "formula": "features.income_stability_index + bank_statement_salary_reconciliation_adjustment",
+            "raw_score": 45.0,
+            "weight": 0.15,
+            "contribution": 6.75,
+            "notes": "Calculated from employment tenure and contract type; 6M bank statement verifies payroll deposits within 10%"
+          },
+          {
+            "component": "debt_burden",
+            "formula": "Stepwise inverse mapping of DTI ratio with CC utilization adjustment",
+            "raw_score": 100.0,
+            "weight": 0.15,
+            "contribution": 15.0,
+            "notes": "Very low debt burden (DTI 12.9%)"
+          },
+          {
+            "component": "employment_stability",
+            "formula": "Tiered mapping based on employment tenure in years",
+            "raw_score": 60.0,
+            "weight": 0.1,
+            "contribution": 6.0,
+            "notes": "1.5 years tenure"
+          },
+          {
+            "component": "affordability",
+            "formula": "Stepwise mapping of proposed EMI to Net Income ratio",
+            "raw_score": 100.0,
+            "weight": 0.1,
+            "contribution": 10.0,
+            "notes": "Excellent affordability (EMI ratio 14.5%)"
+          },
+          {
+            "component": "documentation_quality",
+            "formula": "documentation_completeness * 100",
+            "raw_score": 80.0,
+            "weight": 0.05,
+            "contribution": 4.0,
+            "notes": "80.0% complete"
+          }
+        ]
+      },
+      "eligibility": {
+        "application_id": "test6_salaried_fair_credit_high_cc",
+        "status": "ELIGIBLE",
+        "passed_rules": [
+          "MANDATORY_DOC_IDENTITY_VERIFIED",
+          "MANDATORY_DOC_INCOME_DOCUMENT_AVAILABLE",
+          "MIN_CREDIT_SCORE_600",
+          "MAX_DTI_0.6",
+          "LOAN_AMOUNT_WITHIN_PRODUCT_CAP",
+          "MIN_INCOME_20000.0",
+          "MISSED_PAYMENTS_WITHIN_LIMIT (Got 0)"
+        ],
+        "failed_rules": [],
+        "manual_review_reasons": []
+      },
+      "validation": {
+        "status": "VALID",
+        "is_valid": true,
+        "issues": []
+      }
+    },
+    "test7_business_moderate_margin": {
+      "features": [
+        {
+          "feature": "debt_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_gross_income",
+          "inputs": {
+            "existing_monthly_emi": 20000.0,
+            "monthly_gross_income": 85000.0
+          },
+          "result": 0.2353,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "emi_to_income_ratio",
+          "formula": "existing_monthly_emi / monthly_net_income",
+          "inputs": {
+            "existing_monthly_emi": 20000.0,
+            "monthly_income": 75000.0
+          },
+          "result": 0.2667,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "loan_to_income_ratio",
+          "formula": "requested_loan_amount / annual_income",
+          "inputs": {
+            "requested_loan_amount": 450000.0,
+            "annual_income": 900000.0
+          },
+          "result": 0.5,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "debt_to_revenue_ratio",
+          "formula": "outstanding_debt / annual_revenue",
+          "inputs": {
+            "outstanding_debt": 680000.0,
+            "annual_revenue": 3600000.0
+          },
+          "result": 0.1889,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "credit_card_utilization",
+          "formula": "credit_card_total_balance / credit_card_limit",
+          "inputs": {
+            "credit_card_total_balance": 82000.0,
+            "credit_card_limit": 200000.0
+          },
+          "result": 0.41,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "income_stability_index",
+          "formula": "min(100.0, employment_years * 20.0 + permanent_bonus)",
+          "inputs": {
+            "employment_duration_years": 3.2,
+            "employment_type": "Sole Proprietor"
+          },
+          "result": 64.0,
+          "units": "index_points",
+          "notes": null
+        },
+        {
+          "feature": "documentation_completeness",
+          "formula": "available_verified_documents / total_required_documents",
+          "inputs": {
+            "available_count": 4,
+            "total_required": 5
+          },
+          "result": 0.8,
+          "units": "ratio",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_credits_6m",
+          "formula": "sum(credit_transactions.amount)",
+          "inputs": {
+            "credit_transaction_count": 6,
+            "credit_amounts": [
+              95000.0,
+              88000.0,
+              110000.0,
+              78000.0,
+              92000.0,
+              84000.0
+            ]
+          },
+          "result": 547000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_bank_debits_6m",
+          "formula": "sum(debit_transactions.amount)",
+          "inputs": {
+            "debit_transaction_count": 12,
+            "debit_amounts": [
+              18000.0,
+              42000.0,
+              18000.0,
+              28000.0,
+              18000.0,
+              35000.0,
+              18000.0,
+              12000.0,
+              18000.0,
+              38000.0,
+              18000.0,
+              26000.0
+            ]
+          },
+          "result": 289000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "derived_monthly_emi_from_bank",
+          "formula": "sum(verified_emi_debits) / count_of_emi_debits",
+          "inputs": {
+            "emi_debits_found": 6,
+            "emi_amounts": [
+              18000.0,
+              18000.0,
+              18000.0,
+              18000.0,
+              18000.0,
+              18000.0
+            ],
+            "sum_emi_debits": 108000.0
+          },
+          "result": 18000.0,
+          "units": "currency_inr",
+          "notes": null
+        },
+        {
+          "feature": "total_credit_card_spends_6m",
+          "formula": "sum(credit_card_spend_transactions.amount)",
+          "inputs": {
+            "spend_transaction_count": 7,
+            "spend_amounts": [
+              18000.0,
+              8500.0,
+              24000.0,
+              15000.0,
+              32000.0,
+              28500.0,
+              31000.0
+            ]
+          },
+          "result": 157000.0,
+          "units": "currency_inr",
+          "notes": null
+        }
+      ],
+      "scoring": {
+        "application_id": "test7_business_moderate_margin",
+        "scoring_model": "personal_loan_v1",
+        "timestamp": "2026-09-06T21:58:29.278237Z",
+        "components": {
+          "credit_history": {
+            "raw_score": 63.33,
+            "weight": 0.25,
+            "contribution": 15.83,
+            "notes": "Scaled from bureau credit score of 680 (range 300-900)"
+          },
+          "repayment_behavior": {
+            "raw_score": 100.0,
+            "weight": 0.2,
+            "contribution": 20.0,
+            "notes": "Clean repayment track: 0 missed payments, no overdue debt"
+          },
+          "income_stability": {
+            "raw_score": 64.0,
+            "weight": 0.15,
+            "contribution": 9.6,
+            "notes": "Calculated from employment tenure and contract type"
+          },
+          "debt_burden": {
+            "raw_score": 85.0,
+            "weight": 0.15,
+            "contribution": 12.75,
+            "notes": "Low debt burden (DTI 23.5%)"
+          },
+          "employment_stability": {
+            "raw_score": 80.0,
+            "weight": 0.1,
+            "contribution": 8.0,
+            "notes": "Based on 3.2 recorded years of employment"
+          },
+          "affordability": {
+            "raw_score": 80.0,
+            "weight": 0.1,
+            "contribution": 8.0,
+            "notes": "Healthy affordability (EMI ratio 26.7%)"
+          },
+          "documentation_quality": {
+            "raw_score": 80.0,
+            "weight": 0.05,
+            "contribution": 4.0,
+            "notes": "Completeness ratio: 80.0%"
+          }
+        },
+        "final_score": 78.18,
+        "criticality": "MED",
+        "calculation_trace": [
+          {
+            "component": "credit_history",
+            "formula": "max(0, min(100, (credit_score - 300) / 600 * 100))",
+            "raw_score": 63.33,
+            "weight": 0.25,
+            "contribution": 15.83,
+            "notes": "Scaled from bureau credit score of 680 (range 300-900)"
+          },
+          {
+            "component": "repayment_behavior",
+            "formula": "Rule-based penalty schedule on missed payments and overdue balance",
+            "raw_score": 100.0,
+            "weight": 0.2,
+            "contribution": 20.0,
+            "notes": "Clean repayment track: 0 missed payments, no overdue debt"
+          },
+          {
+            "component": "income_stability",
+            "formula": "features.income_stability_index + bank_statement_salary_reconciliation_adjustment",
+            "raw_score": 64.0,
+            "weight": 0.15,
+            "contribution": 9.6,
+            "notes": "Calculated from employment tenure and contract type"
+          },
+          {
+            "component": "debt_burden",
+            "formula": "Stepwise inverse mapping of DTI ratio with CC utilization adjustment",
+            "raw_score": 85.0,
+            "weight": 0.15,
+            "contribution": 12.75,
+            "notes": "Low debt burden (DTI 23.5%)"
+          },
+          {
+            "component": "employment_stability",
+            "formula": "Tiered mapping based on employment tenure in years",
+            "raw_score": 80.0,
+            "weight": 0.1,
+            "contribution": 8.0,
+            "notes": "3.2 years tenure"
+          },
+          {
+            "component": "affordability",
+            "formula": "Stepwise mapping of proposed EMI to Net Income ratio",
+            "raw_score": 80.0,
+            "weight": 0.1,
+            "contribution": 8.0,
+            "notes": "Healthy affordability (EMI ratio 26.7%)"
+          },
+          {
+            "component": "documentation_quality",
+            "formula": "documentation_completeness * 100",
+            "raw_score": 80.0,
+            "weight": 0.05,
+            "contribution": 4.0,
+            "notes": "80.0% complete"
+          }
+        ]
+      },
+      "eligibility": {
+        "application_id": "test7_business_moderate_margin",
+        "status": "ELIGIBLE",
+        "passed_rules": [
+          "MANDATORY_DOC_IDENTITY_VERIFIED",
+          "MANDATORY_DOC_INCOME_DOCUMENT_AVAILABLE",
+          "MIN_CREDIT_SCORE_600",
+          "MAX_DTI_0.6",
+          "LOAN_AMOUNT_WITHIN_PRODUCT_CAP",
+          "MIN_INCOME_20000.0",
+          "MISSED_PAYMENTS_WITHIN_LIMIT (Got 0)"
+        ],
+        "failed_rules": [],
+        "manual_review_reasons": []
+      },
+      "validation": {
+        "status": "VALID",
+        "is_valid": true,
+        "issues": []
+      }
+    }
+  }
+}

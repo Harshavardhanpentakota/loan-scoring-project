@@ -1,0 +1,31 @@
+--- START DOCUMENT: loan_application.txt ---
+APPLICATION REF: APP_02_HIGH_DEBT
+Applicant Name: Pooja Verma
+Employment Type: Permanent Salaried
+Employer: Zenith Financial Tech
+Employment Tenure: 8.0 years
+Requested Loan Amount: ₹15,00,000 (INR)
+Tenure: 48 months
+Purpose: Personal Investment
+--- END DOCUMENT: loan_application.txt ---
+
+--- START DOCUMENT: salary_slip.txt ---
+Zenith Financial Tech - Salary Statement
+Employee: Pooja Verma
+Monthly Gross Pay: ₹3,50,000
+Monthly Net Pay: ₹2,70,000
+Annual Total CTC: ₹42,00,000
+--- END DOCUMENT: salary_slip.txt ---
+
+--- START DOCUMENT: credit_report.txt ---
+CIBIL TransUnion Credit Information
+Score: 720
+Credit Utilization: 65%
+Existing Loans:
+- Home Loan EMI: ₹1,10,000
+- Auto Loan EMI: ₹45,000
+- Personal Loan EMI: ₹25,000
+Total Existing Monthly EMI: ₹1,80,000
+Total Outstanding Debt: ₹85,00,000
+Past Missed Payments: 0
+--- END DOCUMENT: credit_report.txt ---

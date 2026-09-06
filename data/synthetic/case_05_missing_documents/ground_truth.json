@@ -1,0 +1,13 @@
+{
+  "application_id": "APP_05_MISSING_DOCS",
+  "applicant_name": "Vikram Singh",
+  "applicant_type": "salaried",
+  "requested_loan_amount": 400000.0,
+  "identity_verified": true,
+  "income_document_available": false,
+  "bank_statement_available": false,
+  "tax_document_available": false,
+  "loan_statement_available": false,
+  "expected_eligibility_status": "INELIGIBLE",
+  "expected_failed_rule": "MISSING_MANDATORY_DOC_INCOME_DOCUMENT_AVAILABLE"
+}

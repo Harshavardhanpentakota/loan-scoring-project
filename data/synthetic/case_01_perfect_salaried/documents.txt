@@ -1,0 +1,45 @@
+--- START DOCUMENT: loan_application.txt ---
+APPLICATION REF: APP_01_PERFECT_SALARIED
+Applicant Name: Rohan Sharma
+Employment Type: Permanent Salaried
+Employer: Apex Cloud Systems Pvt Ltd
+Date of Joining: 2021-03-15 (Tenure: 5.2 years)
+Requested Loan Amount: ₹7,50,000 (INR)
+Tenure: 36 months
+Loan Purpose: Home Renovation
+--- END DOCUMENT: loan_application.txt ---
+
+--- START DOCUMENT: salary_slip_june.txt ---
+COMPANY: Apex Cloud Systems Pvt Ltd
+EMPLOYEE PAYSLIP FOR: June 2026
+Employee: Rohan Sharma | Designation: Lead Systems Architect
+------------------------------------------------------------
+EARNINGS (INR)               | DEDUCTIONS (INR)
+------------------------------------------------------------
+Basic Pay:        ₹75,000    | PF Employee:      ₹9,000
+HRA:              ₹35,000    | Professional Tax:    ₹200
+Special Allowance:₹15,000    | Income Tax (TDS): ₹11,300
+------------------------------------------------------------
+Gross Salary: ₹1,25,000      | Total Deductions: ₹20,500
+NET SALARY DISBURSED: ₹1,04,500
+--- END DOCUMENT: salary_slip_june.txt ---
+
+--- START DOCUMENT: form_16_tax.txt ---
+CERTIFICATE UNDER SECTION 203 OF THE INCOME-TAX ACT, 1961
+Assessment Year: 2026-2027
+Employee: Rohan Sharma
+Gross Total Income (Salary): ₹15,00,000
+Total Tax Deducted at Source: ₹1,35,600
+--- END DOCUMENT: form_16_tax.txt ---
+
+--- START DOCUMENT: cibil_report.txt ---
+CREDIT INFORMATION BUREAU REPORT (CIBIL)
+Report Date: 2026-06-01
+Applicant: Rohan Sharma
+CIBIL TransUnion Score: 784
+Total Accounts: 2 Active
+Credit Card Utilization: 22%
+Existing Monthly EMI: ₹18,000
+Total Outstanding Debt: ₹4,50,000
+Repayment Track: Past 36 months 0 missed payments, 0 overdue.
+--- END DOCUMENT: cibil_report.txt ---

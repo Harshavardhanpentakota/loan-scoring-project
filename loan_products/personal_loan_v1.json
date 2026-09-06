@@ -1,0 +1,25 @@
+{
+  "product_id": "personal_loan",
+  "model_version": "personal_loan_v1",
+  "description": "Standard unsecured personal loan underwriting model",
+  "eligibility_rules": {
+    "min_credit_score": 600,
+    "max_dti": 0.60,
+    "max_requested_amount": 2500000.0,
+    "min_monthly_income": 20000.0,
+    "max_allowed_missed_payments": 2,
+    "mandatory_documents": [
+      "identity_verified",
+      "income_document_available"
+    ]
+  },
+  "weights": {
+    "credit_history": 0.25,
+    "repayment_behavior": 0.20,
+    "income_stability": 0.15,
+    "debt_burden": 0.15,
+    "employment_stability": 0.10,
+    "affordability": 0.10,
+    "documentation_quality": 0.05
+  }
+}

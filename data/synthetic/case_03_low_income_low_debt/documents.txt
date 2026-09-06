@@ -1,0 +1,28 @@
+--- START DOCUMENT: loan_application.txt ---
+APPLICATION REF: APP_03_LOW_INCOME
+Applicant Name: Suresh Kumar
+Employment: Contract Staff at Metro Logistics Hub
+Tenure: 1.5 years
+Requested Loan Amount: ₹50,000 (INR)
+Tenure: 12 months
+Purpose: Medical expense
+--- END DOCUMENT: loan_application.txt ---
+
+--- START DOCUMENT: salary_slip.txt ---
+Metro Logistics Hub - Monthly Payslip
+Employee: Suresh Kumar
+Gross Monthly Salary: ₹22,000
+Net In-hand Pay: ₹19,500
+Annual Stated Income: ₹2,64,000
+--- END DOCUMENT: salary_slip.txt ---
+
+--- START DOCUMENT: credit_report.txt ---
+Credit Bureau Record
+CIBIL Score: 680
+Active Loans: 0
+Monthly EMI Obligations: ₹0
+Outstanding Debt: ₹0
+Overdue Amount: ₹0
+Missed Payments: 0
+Credit Utilization: 5%
+--- END DOCUMENT: credit_report.txt ---

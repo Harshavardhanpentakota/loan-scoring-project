@@ -1,0 +1,29 @@
+--- START DOCUMENT: loan_application.txt ---
+APPLICATION REF: APP_06_BUSINESS_OWNER
+Applicant: Meera Iyer
+Category: Self-Employed Business Owner
+Business Name: Iyer Precision Tools & Dies
+Years in Business: 6.5 years
+Requested Loan Amount: ₹12,00,000 (INR)
+Tenure: 48 months
+Purpose: Purchase CNC Milling Equipment
+--- END DOCUMENT: loan_application.txt ---
+
+--- START DOCUMENT: itr_statement.txt ---
+INCOME TAX RETURN VERIFICATION FORM (ITR-4)
+Assessment Year: 2026-27
+Assessee: Meera Iyer | Enterprise: Iyer Precision Tools & Dies
+Gross Business Turnover / Revenue: ₹48,00,000
+Net Taxable Business Income: ₹21,60,000
+Effective Monthly Net Draw: ₹1,45,000 (Gross Average: ₹1,80,000)
+--- END DOCUMENT: itr_statement.txt ---
+
+--- START DOCUMENT: credit_report.txt ---
+Commercial & Individual Credit Report
+CIBIL Score: 765
+Active Facilities: 1 Working Capital Loan
+Existing Monthly EMI: ₹24,000
+Total Outstanding Loan: ₹6,00,000
+Past Delinquencies: 0 missed payments in 24 months
+Credit Utilization: 30%
+--- END DOCUMENT: credit_report.txt ---

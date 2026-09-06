@@ -1,0 +1,10 @@
+{
+  "application_id": "APP_08_INVALID_DATA",
+  "applicant_name": "Daniel Fernandez",
+  "credit_score": 980,
+  "monthly_gross_income": 8000.0,
+  "monthly_income_currency": "USD",
+  "requested_loan_amount": 500000.0,
+  "requested_loan_currency": "INR",
+  "expected_validation_status": "DATA_INCONSISTENCY"
+}

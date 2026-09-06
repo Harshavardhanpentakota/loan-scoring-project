@@ -1,0 +1,23 @@
+{
+  "application_id": "APP_01_PERFECT_SALARIED",
+  "applicant_name": "Rohan Sharma",
+  "applicant_type": "salaried",
+  "employment_type": "permanent",
+  "employer_or_business_name": "Apex Cloud Systems Pvt Ltd",
+  "employment_duration_years": 5.2,
+  "monthly_gross_income": 125000.0,
+  "monthly_net_income": 104500.0,
+  "annual_income": 1500000.0,
+  "existing_monthly_emi": 18000.0,
+  "outstanding_debt": 450000.0,
+  "missed_payments": 0,
+  "requested_loan_amount": 750000.0,
+  "tenure_months": 36,
+  "credit_score": 784,
+  "credit_utilization_ratio": 0.22,
+  "identity_verified": true,
+  "income_document_available": true,
+  "bank_statement_available": true,
+  "tax_document_available": true,
+  "loan_statement_available": true
+}

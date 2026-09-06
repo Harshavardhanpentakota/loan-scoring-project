@@ -1,0 +1,17 @@
+--- START DOCUMENT: loan_application.txt ---
+APPLICATION REF: APP_07_DELINQUENT
+Applicant: Karan Malhotra
+Monthly Gross Salary: ₹65,000
+Monthly Net Salary: ₹52,000
+Requested Loan Amount: ₹3,00,000 (INR)
+--- END DOCUMENT: loan_application.txt ---
+
+--- START DOCUMENT: credit_report.txt ---
+CIBIL Credit Bureau Report
+Applicant: Karan Malhotra
+CIBIL Score: 540 (Poor)
+Existing Monthly EMI Obligations: ₹28,000
+Total Outstanding Debt: ₹7,20,000
+Current Overdue Balance: ₹42,000
+Missed Payments Recorded: 4 missed payments (SMA-2 delinquency status)
+--- END DOCUMENT: credit_report.txt ---

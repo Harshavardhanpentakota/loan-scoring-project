@@ -1,0 +1,8 @@
+--- START DOCUMENT: loan_application.txt ---
+APPLICATION REF: APP_05_MISSING_DOCS
+Applicant Name: Vikram Singh
+Identity Verified: Yes (Aadhaar / Voter ID record matched)
+Income Proof Attached: None (Self-declaration only)
+Bank Statement Attached: No
+Requested Loan Amount: ₹4,00,000 (INR)
+--- END DOCUMENT: loan_application.txt ---

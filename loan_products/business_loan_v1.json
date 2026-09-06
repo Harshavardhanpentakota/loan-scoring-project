@@ -1,0 +1,26 @@
+{
+  "product_id": "business_loan",
+  "model_version": "business_loan_v1",
+  "description": "Secured and unsecured SME business loan model",
+  "eligibility_rules": {
+    "min_credit_score": 620,
+    "max_dti": 0.55,
+    "max_requested_amount": 10000000.0,
+    "min_monthly_income": 50000.0,
+    "max_allowed_missed_payments": 1,
+    "mandatory_documents": [
+      "identity_verified",
+      "tax_document_available",
+      "bank_statement_available"
+    ]
+  },
+  "weights": {
+    "credit_history": 0.20,
+    "repayment_behavior": 0.25,
+    "income_stability": 0.15,
+    "debt_burden": 0.20,
+    "employment_stability": 0.05,
+    "affordability": 0.10,
+    "documentation_quality": 0.05
+  }
+}

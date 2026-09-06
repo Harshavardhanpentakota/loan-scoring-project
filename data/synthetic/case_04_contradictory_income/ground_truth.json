@@ -1,0 +1,11 @@
+{
+  "application_id": "APP_04_CONTRADICTORY_INCOME",
+  "applicant_name": "Arjun Patel",
+  "applicant_type": "salaried",
+  "monthly_gross_income": 125000.0,
+  "monthly_net_income": 104500.0,
+  "annual_income": 850000.0,
+  "credit_score": 750,
+  "requested_loan_amount": 500000.0,
+  "expected_validation_status": "DATA_INCONSISTENCY"
+}

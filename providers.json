@@ -1,5 +1,5 @@
 {
-  "default_model": "gemma4:latest",
+  "default_model": "gemma4:31b-cloud",
   "providers": {
     "ollama": {
       "base_url": "http://localhost:11434/v1",
@@ -13,6 +13,7 @@
         "gemma3:4b":   { "temperature": 0.1, "top_p": 0.9 },
         "gemma3:12b":  { "temperature": 0.1, "top_p": 0.9 },
         "gemma4:latest": { "temperature": 0.1, "top_p": 0.9 },
+        "gemma4:31b-cloud": { "temperature": 0.0, "top_p": 0.9 },
         "mistral:7b":  { "temperature": 0.1, "top_p": 0.9 }
       }
     },

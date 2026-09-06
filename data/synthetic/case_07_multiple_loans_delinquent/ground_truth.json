@@ -1,0 +1,14 @@
+{
+  "application_id": "APP_07_DELINQUENT",
+  "applicant_name": "Karan Malhotra",
+  "applicant_type": "salaried",
+  "monthly_gross_income": 65000.0,
+  "monthly_net_income": 52000.0,
+  "existing_monthly_emi": 28000.0,
+  "outstanding_debt": 720000.0,
+  "overdue_amount": 42000.0,
+  "missed_payments": 4,
+  "requested_loan_amount": 300000.0,
+  "credit_score": 540,
+  "expected_eligibility_status": "INELIGIBLE"
+}
