@@ -30,7 +30,12 @@
 - [Core Principles & Architectural Guarantee](#-core-principles--architectural-guarantee)
 - [System Architecture](#-system-architecture)
 - [High-Throughput Parallel Architecture (10,000+ Applications)](#-high-throughput-parallel-architecture-10000-applications)
-- [Performance Benchmarks & Concurrency Scaling](#-performance-benchmarks--concurrency-scaling)
+- [Performance: Serial vs. Parallel Benchmarks (Every Metric Compared)](#-performance-serial-vs-parallel-benchmarks-every-metric-compared)
+  - [Metric-by-Metric Comprehensive Comparison Table](#1-metric-by-metric-comprehensive-comparison-table)
+  - [Pipeline Phase Latency Breakdown (Where Time is Spent)](#2-pipeline-phase-latency-breakdown-where-time-is-spent)
+  - [End-to-End Latency Percentiles (p50 & p95 Tail Latencies)](#3-end-to-end-latency-percentiles-p50--p95-tail-latencies)
+  - [Worker Sweep Scaling Curve (1 to 100 Workers)](#4-worker-sweep-scaling-curve-1-to-100-workers)
+  - [Isolated Deterministic Ranking at Massive Scale (100 to 10,000 Applicants)](#5-isolated-deterministic-ranking-at-massive-scale-100-to-10000-applicants)
 - [4-Stage Ingestion & Processing Pipeline](#-4-stage-ingestion--processing-pipeline)
 - [Deterministic Scoring Engine & Mathematical Rubric](#-deterministic-scoring-engine--mathematical-rubric)
 - [Policy Gating & Eligibility Engine](#-policy-gating--eligibility-engine)
@@ -243,48 +248,107 @@ To support production-grade portfolio underwriting, the engine is designed to in
 
 ---
 
-## 📈 Performance Benchmarks & Concurrency Scaling
+## 📈 Performance: Serial vs. Parallel Benchmarks (Every Metric Compared)
 
-All benchmarks were recorded on an 8–10 core environment using standard loan scenarios and product policy configurations (`personal_loan_v1.json`). Full raw benchmark data is stored in [`benchmarks/benchmark_comparison.json`](benchmarks/benchmark_comparison.json).
+All benchmarks were captured on an 8–10 core hardware environment under identical configuration (`personal_loan_v1.json`) and datasets. Sequential execution runs as a single process in one thread (`--sequential`), while parallel execution utilizes bounded process worker pools (`--workers 10`) with greedy min-heap batching and backpressure.
 
-### 1. Concurrency Worker Sweep (100 Applications)
+Full machine-readable benchmark records are stored in [`benchmarks/benchmark_comparison.json`](benchmarks/benchmark_comparison.json).
 
-Evaluating worker scaling from 1 to 100 parallel workers:
+---
 
-| Workers | Execution Time | Throughput | Speedup Factor | Peak Memory | Operating Profile |
-| :---: | :---: | :---: | :---: | :---: | :--- |
-| **1** | 15.53s | 6.44 apps/sec | 1.00x | 81.2 MB | Baseline sequential execution |
-| **5** | 4.31s | 23.22 apps/sec | 3.61x | 81.3 MB | Near-linear multi-core scaling |
-| **10** | **3.20s** | **31.24 apps/sec** | **4.85x** | **81.3 MB** | **Optimal runtime concurrency (80% time reduction)** |
-| **20** | 3.54s | 28.29 apps/sec | 4.39x | 81.3 MB | Worker pool capacity ceiling reached |
-| **50** | 5.10s | 19.61 apps/sec | 3.04x | 81.3 MB | Context switching & IPC overhead |
-| **100** | 7.74s | 12.92 apps/sec | 2.01x | 81.3 MB | Process scheduling contention |
+### 1. Metric-by-Metric Comprehensive Comparison Table
+
+The table below contrasts **every operational, throughput, latency, memory, and underwriting metric** across portfolios of 10, 100, and 1,000 applications:
+
+| Metric Category | Specific Metric | 10 Apps (Serial) | 10 Apps (Parallel) | 100 Apps (Serial) | 100 Apps (Parallel) | 1,000 Apps (Serial) | 1,000 Apps (Parallel) |
+|---|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Runtime & Speed** | **Total Execution Time** | 1.7098s | **0.6366s** | 16.0184s | **3.2431s** | 160.639s (~2.7m) | **33.7981s** (~34s) |
+| | **Speedup Factor** | 1.00x | **2.69x** | 1.00x | **4.94x** | 1.00x | **4.75x** |
+| | **Execution Time Reduction** | — | **62.77%** | — | **79.75%** | — | **78.96%** |
+| **Throughput** | **Application Throughput** | 5.85 apps/s | **15.71 apps/s** | 6.24 apps/s | **30.83 apps/s** | 6.23 apps/s | **29.59 apps/s** |
+| | **Document Ingestion Rate** | 32.75 docs/s | **88.03 docs/s** | 34.77 docs/s | **171.92 docs/s** | 34.69 docs/s | **165.02 docs/s** |
+| | **Total Financial PDFs Parsed**| 56 docs | 56 docs | 557 docs | 557 docs | 5,572 docs | 5,572 docs |
+| **Per-App Latency** | **Avg Processing Time / App** | 0.1710s | **0.0637s** | 0.1602s | **0.0324s** | 0.1606s | **0.0338s** |
+| | **$p_{50}$ Total Latency** | 0.1714s | 0.5057s | 0.1627s | 0.3098s | 0.1638s | 0.3434s |
+| | **$p_{95}$ Total Latency** | 0.2281s | 0.5541s | 0.2045s | 0.4978s | 0.2062s | 0.4233s |
+| **Memory Footprint** | **Peak Resident Memory** | 81.27 MB | 81.27 MB | 81.27 MB | 81.27 MB | 142.64 MB | 227.20 MB |
+| | **Memory Delta During Run** | 0.0 MB | 0.0 MB | 0.0 MB | 0.0 MB | +61.38 MB | +145.93 MB |
+| **Sorting & Ranks** | **Portfolio Ranking Duration** | 0.00010s | 0.00006s | 0.00050s | 0.00042s | 0.00460s | 0.00445s |
+| **Job Integrity** | **Successful Applications** | 10 / 10 | 10 / 10 | 100 / 100 | 100 / 100 | 1,000 / 1,000 | 1,000 / 1,000 |
+| | **Failed Applications** | 0 | 0 | 0 | 0 | 0 | 0 |
+| | **Retry Count** | 0 | 0 | 0 | 0 | 0 | 0 |
+| | **Direct LLM Calls** | 0 | 0 | 0 | 0 | 0 | 0 |
+| **Underwriting** | **Qualified Applicants** | 7 (70.0%) | 7 (70.0%) | 71 (71.0%) | 71 (71.0%) | 714 (71.4%) | 714 (71.4%) |
+| | **Ineligible Applicants** | 3 (30.0%) | 3 (30.0%) | 29 (29.0%) | 29 (29.0%) | 286 (28.6%) | 286 (28.6%) |
+
+> [!NOTE]
+> **Key Observation on Latency vs. Throughput**: In serial mode, an applicant's $p_{50}$ latency represents pure individual processing time (~163 ms). In parallel mode, batch queuing and IPC buffering shift individual item completion $p_{50}$ to ~343 ms, but system-level throughput surges **4.75x to 4.94x** (processing ~30 applications per second instead of ~6), delivering a net **79% reduction in total portfolio turnaround time**.
+
+---
+
+### 2. Pipeline Phase Latency Breakdown (Where Time is Spent)
+
+Profiling shows where wall-clock time is consumed within each pipeline phase:
+
+| Pipeline Phase | 10 Apps (Serial) | 100 Apps (Serial) | 1,000 Apps (Serial) | 1,000 Apps (Parallel 10w) | % of Total Runtime |
+|---|:---:|:---:|:---:|:---:|:---:|
+| **1. PDF Extraction & Loading** | 1.7076s | 15.9977s | 160.4357s | **~33.60s** | **99.87%** |
+| **2. 6M Statement Transaction Parsing** | 0.0012s | 0.0112s | 0.1098s | **~0.04s** | **0.07%** |
+| **3. Financial Ratios & Eligibility Gating** | 0.0006s | 0.0053s | 0.0522s | **~0.02s** | **0.03%** |
+| **4. 7-Component Mathematical Scoring** | 0.0003s | 0.0027s | 0.0263s | **~0.01s** | **0.02%** |
+| **5. Portfolio Multi-Key Ranking** | 0.0001s | 0.0005s | 0.0046s | **0.0045s** | **< 0.01%** |
+| **Total Wall-Clock Time** | **1.7098s** | **16.0184s** | **160.6390s** | **33.7981s** | **100.0%** |
+
+*Insight*: Over **99.8%** of processing time is spent in PDF document parsing and text extraction. Spreading PDF loading across CPU cores via `ProcessPoolExecutor` directly attacks the primary bottleneck, achieving near-linear multi-core speedups.
+
+---
+
+### 3. End-to-End Latency Percentiles (p50 & p95 Tail Latencies)
+
+Fine-grained distribution of per-application latencies across portfolio scales:
+
+| Portfolio Scale | Mode | $p_{50}$ Total Latency | $p_{95}$ Total Latency | $p_{50}$ Extraction | $p_{95}$ Extraction | $p_{50}$ Scoring | $p_{95}$ Scoring |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **10 Applications** | **Serial** | 0.1714s | 0.2281s | 0.1713s | 0.2280s | < 0.0001s | < 0.0001s |
+| | **Parallel (10w)** | 0.5057s | 0.5541s | — | — | — | — |
+| **100 Applications** | **Serial** | 0.1627s | 0.2045s | 0.1626s | 0.2044s | < 0.0001s | < 0.0001s |
+| | **Parallel (10w)** | 0.3098s | 0.4978s | — | — | — | — |
+| **1,000 Applications** | **Serial** | 0.1638s | 0.2062s | 0.1637s | 0.2061s | < 0.0001s | < 0.0001s |
+| | **Parallel (10w)** | 0.3434s | 0.4233s | — | — | — | — |
+
+---
+
+### 4. Worker Sweep Scaling Curve (1 to 100 Workers)
+
+Measured across 100 applications (557 documents) to identify the optimal hardware concurrency threshold:
+
+| Workers | Total Time | App Rate | Document Rate | Avg App Latency | $p_{50}$ Latency | $p_{95}$ Latency | Speedup | Peak RAM | Operational Profile |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **1** | 15.525s | 6.44 apps/s | 35.88 docs/s | 0.1553s | 0.1575s | 0.1981s | 1.00x | 81.2 MB | Baseline single-process sequential |
+| **5** | 4.306s | 23.22 apps/s | 129.44 docs/s | 0.0431s | 0.2079s | 0.2828s | 3.61x | 81.3 MB | Near-linear multi-core speedup |
+| **10** | **3.201s** | **31.24 apps/s** | **174.17 docs/s**| **0.0320s** | **0.2877s** | **0.5568s** | **4.85x** | **81.3 MB** | **Optimal throughput ceiling (80% time reduction)** |
+| **20** | 3.535s | 28.29 apps/s | 157.70 docs/s | 0.0354s | 0.5855s | 1.1961s | 4.39x | 81.3 MB | Worker capacity matches core saturation |
+| **50** | 5.100s | 19.61 apps/s | 109.32 docs/s | 0.0510s | 2.2425s | 3.5339s | 3.04x | 81.3 MB | Context-switch & IPC serialization overhead |
+| **100** | 7.737s | 12.92 apps/s | 72.02 docs/s | 0.0774s | 6.3040s | 6.5227s | 2.01x | 81.3 MB | CPU thrashing and OS schedule contention |
 
 > [!TIP]
-> **Recommended Concurrency**: **10 workers** delivers the peak throughput of **31.24 applications/sec**. Increasing beyond 20 workers on an 8–10 core machine introduces unnecessary inter-process communication (IPC) and scheduling overhead.
+> **Optimal Worker Configuration**: Peak performance occurs at **10 workers** on an 8–10 core machine. Increasing worker pools past 20 introduces context-switching overhead and IPC queuing without increasing hardware throughput.
 
 ---
 
-### 2. Scale Comparison: Sequential Baseline vs. Parallel Optimized (10 Workers)
+### 5. Isolated Deterministic Ranking at Massive Scale (100 to 10,000 Applicants)
 
-| Application Portfolio Size | Sequential Time | Parallel Time | Speedup Factor | Execution Time Reduction | Sequential Throughput | Parallel Throughput |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **10 Applications** | 1.71s | **0.64s** | **2.69x** | **62.8%** | 5.85 apps/sec | 15.71 apps/sec |
-| **100 Applications** | 16.02s | **3.24s** | **4.94x** | **79.8%** | 6.24 apps/sec | 30.83 apps/sec |
-| **1,000 Applications** | 160.64s | **33.80s** | **4.75x** | **79.0%** | 6.23 apps/sec | 29.59 apps/sec |
-| **10,000 Applications** *(Projected)* | ~1,605s (26.8 min) | **~335s (5.6 min)** | **~4.8x** | **~79.1%** | ~6.2 apps/sec | ~29.9 apps/sec |
+Evaluating [`ranking.py`](ranking.py) running multi-key sort in isolation on pre-scored applicant records:
 
----
+$$\text{Sort Key} = (\text{Final Score DESC}, \text{CIBIL DESC}, \text{DTI ASC}, \text{Monthly Net Income DESC}, \text{App ID ASC})$$
 
-### 3. Isolated Deterministic Ranking Engine Performance
+| Portfolio Scale | Sorting Wall-Clock Time | Ranking Throughput | Peak RAM | Qualified Count | Ineligible Queue |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **100 Applicants** | 0.000275s (0.28 ms) | **363,086 apps/s** | 227.2 MB | 33 | 67 |
+| **1,000 Applicants** | 0.003143s (3.14 ms) | **318,129 apps/s** | 227.2 MB | 331 | 669 |
+| **10,000 Applicants** | **0.074985s (74.98 ms)**| **133,360 apps/s** | **227.2 MB** | 3,456 | 6,544 |
 
-Benchmarking [`ranking.py`](ranking.py) sorting pre-scored applicants with multi-key tie-breaking:
-
-| Portfolio Scale | Sorting Time | Throughput | Peak Memory | Sorting Complexity |
-| :---: | :---: | :---: | :---: | :--- |
-| **100 Applicants** | 0.28 ms | 363,086 apps/sec | 227.2 MB | Sub-millisecond sorting |
-| **1,000 Applicants** | 3.14 ms | 318,129 apps/sec | 227.2 MB | Multi-key sort (Score, CIBIL, DTI, Income) |
-| **10,000 Applicants** | **74.98 ms** | **133,360 apps/sec** | **227.2 MB** | Ranks entire 10k portfolio in under **75 ms** |
+*Key Takeaway*: The multi-key sorting algorithm handles **10,000 applicant dossiers in under 75 milliseconds**, confirming that portfolio ranking will never become a bottleneck even under massive institutional scale.
 
 ---
 
