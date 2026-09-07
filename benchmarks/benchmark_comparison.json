@@ -1,0 +1,348 @@
+{
+  "optimal_worker_count": 10,
+  "concurrency_sweep_100_apps": {
+    "1": {
+      "scale": 100,
+      "mode": "parallel_1_workers",
+      "workers": 1,
+      "total_execution_time_sec": 15.5253,
+      "avg_processing_time_per_app_sec": 0.1553,
+      "applications_processed_per_sec": 6.44,
+      "documents_processed_per_sec": 35.88,
+      "successful_applications": 100,
+      "failed_applications": 0,
+      "retry_count": 0,
+      "number_of_llm_calls": 0,
+      "latency_percentiles_sec": {
+        "p50_total": 0.1575,
+        "p95_total": 0.1981
+      },
+      "peak_memory_mb": 81.22,
+      "qualified_count": 71,
+      "review_count": 0,
+      "ineligible_count": 29,
+      "ranking_duration_sec": 0.000429
+    },
+    "5": {
+      "scale": 100,
+      "mode": "parallel_5_workers",
+      "workers": 5,
+      "total_execution_time_sec": 4.3058,
+      "avg_processing_time_per_app_sec": 0.0431,
+      "applications_processed_per_sec": 23.22,
+      "documents_processed_per_sec": 129.44,
+      "successful_applications": 100,
+      "failed_applications": 0,
+      "retry_count": 0,
+      "number_of_llm_calls": 0,
+      "latency_percentiles_sec": {
+        "p50_total": 0.2079,
+        "p95_total": 0.2828
+      },
+      "peak_memory_mb": 81.27,
+      "qualified_count": 71,
+      "review_count": 0,
+      "ineligible_count": 29,
+      "ranking_duration_sec": 0.000383
+    },
+    "10": {
+      "scale": 100,
+      "mode": "parallel_10_workers",
+      "workers": 10,
+      "total_execution_time_sec": 3.2013,
+      "avg_processing_time_per_app_sec": 0.032,
+      "applications_processed_per_sec": 31.24,
+      "documents_processed_per_sec": 174.17,
+      "successful_applications": 100,
+      "failed_applications": 0,
+      "retry_count": 0,
+      "number_of_llm_calls": 0,
+      "latency_percentiles_sec": {
+        "p50_total": 0.2877,
+        "p95_total": 0.5568
+      },
+      "peak_memory_mb": 81.27,
+      "qualified_count": 71,
+      "review_count": 0,
+      "ineligible_count": 29,
+      "ranking_duration_sec": 0.000384
+    },
+    "20": {
+      "scale": 100,
+      "mode": "parallel_20_workers",
+      "workers": 20,
+      "total_execution_time_sec": 3.5353,
+      "avg_processing_time_per_app_sec": 0.0354,
+      "applications_processed_per_sec": 28.29,
+      "documents_processed_per_sec": 157.7,
+      "successful_applications": 100,
+      "failed_applications": 0,
+      "retry_count": 0,
+      "number_of_llm_calls": 0,
+      "latency_percentiles_sec": {
+        "p50_total": 0.5855,
+        "p95_total": 1.1961
+      },
+      "peak_memory_mb": 81.27,
+      "qualified_count": 71,
+      "review_count": 0,
+      "ineligible_count": 29,
+      "ranking_duration_sec": 0.000411
+    },
+    "50": {
+      "scale": 100,
+      "mode": "parallel_50_workers",
+      "workers": 50,
+      "total_execution_time_sec": 5.0997,
+      "avg_processing_time_per_app_sec": 0.051,
+      "applications_processed_per_sec": 19.61,
+      "documents_processed_per_sec": 109.32,
+      "successful_applications": 100,
+      "failed_applications": 0,
+      "retry_count": 0,
+      "number_of_llm_calls": 0,
+      "latency_percentiles_sec": {
+        "p50_total": 2.2425,
+        "p95_total": 3.5339
+      },
+      "peak_memory_mb": 81.27,
+      "qualified_count": 71,
+      "review_count": 0,
+      "ineligible_count": 29,
+      "ranking_duration_sec": 0.000601
+    },
+    "100": {
+      "scale": 100,
+      "mode": "parallel_100_workers",
+      "workers": 100,
+      "total_execution_time_sec": 7.7372,
+      "avg_processing_time_per_app_sec": 0.0774,
+      "applications_processed_per_sec": 12.92,
+      "documents_processed_per_sec": 72.02,
+      "successful_applications": 100,
+      "failed_applications": 0,
+      "retry_count": 0,
+      "number_of_llm_calls": 0,
+      "latency_percentiles_sec": {
+        "p50_total": 6.304,
+        "p95_total": 6.5227
+      },
+      "peak_memory_mb": 81.27,
+      "qualified_count": 71,
+      "review_count": 0,
+      "ineligible_count": 29,
+      "ranking_duration_sec": 0.000452
+    }
+  },
+  "scale_comparisons": {
+    "10": {
+      "scale": 10,
+      "sequential": {
+        "scale": 10,
+        "mode": "sequential",
+        "total_execution_time_sec": 1.7098,
+        "avg_processing_time_per_app_sec": 0.171,
+        "applications_processed_per_sec": 5.85,
+        "documents_processed_per_sec": 32.75,
+        "total_documents": 56,
+        "successful_applications": 10,
+        "failed_applications": 0,
+        "retry_count": 0,
+        "number_of_llm_calls": 0,
+        "phase_breakdown_sec": {
+          "extraction_loading": 1.7076,
+          "statement_parsing": 0.0012,
+          "feature_and_eligibility": 0.0006,
+          "scoring": 0.0003,
+          "ranking": 0.0001
+        },
+        "latency_percentiles_sec": {
+          "p50_total": 0.1714,
+          "p95_total": 0.2281,
+          "p50_extraction": 0.1713,
+          "p95_extraction": 0.228,
+          "p50_scoring": 0.0,
+          "p95_scoring": 0.0
+        },
+        "peak_memory_mb": 81.27,
+        "memory_delta_mb": 0.0,
+        "qualified_count": 7,
+        "review_count": 0,
+        "ineligible_count": 3
+      },
+      "parallel": {
+        "scale": 10,
+        "mode": "parallel_10_workers",
+        "workers": 10,
+        "total_execution_time_sec": 0.6366,
+        "avg_processing_time_per_app_sec": 0.0637,
+        "applications_processed_per_sec": 15.71,
+        "documents_processed_per_sec": 88.03,
+        "successful_applications": 10,
+        "failed_applications": 0,
+        "retry_count": 0,
+        "number_of_llm_calls": 0,
+        "latency_percentiles_sec": {
+          "p50_total": 0.5057,
+          "p95_total": 0.5541
+        },
+        "peak_memory_mb": 81.27,
+        "qualified_count": 7,
+        "review_count": 0,
+        "ineligible_count": 3,
+        "ranking_duration_sec": 6e-05
+      },
+      "speedup_factor": 2.69,
+      "improvement_percentage": 62.77
+    },
+    "100": {
+      "scale": 100,
+      "sequential": {
+        "scale": 100,
+        "mode": "sequential",
+        "total_execution_time_sec": 16.0184,
+        "avg_processing_time_per_app_sec": 0.1602,
+        "applications_processed_per_sec": 6.24,
+        "documents_processed_per_sec": 34.77,
+        "total_documents": 557,
+        "successful_applications": 100,
+        "failed_applications": 0,
+        "retry_count": 0,
+        "number_of_llm_calls": 0,
+        "phase_breakdown_sec": {
+          "extraction_loading": 15.9977,
+          "statement_parsing": 0.0112,
+          "feature_and_eligibility": 0.0053,
+          "scoring": 0.0027,
+          "ranking": 0.0005
+        },
+        "latency_percentiles_sec": {
+          "p50_total": 0.1627,
+          "p95_total": 0.2045,
+          "p50_extraction": 0.1626,
+          "p95_extraction": 0.2044,
+          "p50_scoring": 0.0,
+          "p95_scoring": 0.0
+        },
+        "peak_memory_mb": 81.27,
+        "memory_delta_mb": 0.0,
+        "qualified_count": 71,
+        "review_count": 0,
+        "ineligible_count": 29
+      },
+      "parallel": {
+        "scale": 100,
+        "mode": "parallel_10_workers",
+        "workers": 10,
+        "total_execution_time_sec": 3.2431,
+        "avg_processing_time_per_app_sec": 0.0324,
+        "applications_processed_per_sec": 30.83,
+        "documents_processed_per_sec": 171.92,
+        "successful_applications": 100,
+        "failed_applications": 0,
+        "retry_count": 0,
+        "number_of_llm_calls": 0,
+        "latency_percentiles_sec": {
+          "p50_total": 0.3098,
+          "p95_total": 0.4978
+        },
+        "peak_memory_mb": 81.27,
+        "qualified_count": 71,
+        "review_count": 0,
+        "ineligible_count": 29,
+        "ranking_duration_sec": 0.000418
+      },
+      "speedup_factor": 4.94,
+      "improvement_percentage": 79.75
+    },
+    "1000": {
+      "scale": 1000,
+      "sequential": {
+        "scale": 1000,
+        "mode": "sequential",
+        "total_execution_time_sec": 160.639,
+        "avg_processing_time_per_app_sec": 0.1606,
+        "applications_processed_per_sec": 6.23,
+        "documents_processed_per_sec": 34.69,
+        "total_documents": 5572,
+        "successful_applications": 1000,
+        "failed_applications": 0,
+        "retry_count": 0,
+        "number_of_llm_calls": 0,
+        "phase_breakdown_sec": {
+          "extraction_loading": 160.4357,
+          "statement_parsing": 0.1098,
+          "feature_and_eligibility": 0.0522,
+          "scoring": 0.0263,
+          "ranking": 0.0046
+        },
+        "latency_percentiles_sec": {
+          "p50_total": 0.1638,
+          "p95_total": 0.2062,
+          "p50_extraction": 0.1637,
+          "p95_extraction": 0.2061,
+          "p50_scoring": 0.0,
+          "p95_scoring": 0.0
+        },
+        "peak_memory_mb": 142.64,
+        "memory_delta_mb": 61.38,
+        "qualified_count": 714,
+        "review_count": 0,
+        "ineligible_count": 286
+      },
+      "parallel": {
+        "scale": 1000,
+        "mode": "parallel_10_workers",
+        "workers": 10,
+        "total_execution_time_sec": 33.7981,
+        "avg_processing_time_per_app_sec": 0.0338,
+        "applications_processed_per_sec": 29.59,
+        "documents_processed_per_sec": 165.02,
+        "successful_applications": 1000,
+        "failed_applications": 0,
+        "retry_count": 0,
+        "number_of_llm_calls": 0,
+        "latency_percentiles_sec": {
+          "p50_total": 0.3434,
+          "p95_total": 0.4233
+        },
+        "peak_memory_mb": 227.2,
+        "qualified_count": 714,
+        "review_count": 0,
+        "ineligible_count": 286,
+        "ranking_duration_sec": 0.00445
+      },
+      "speedup_factor": 4.75,
+      "improvement_percentage": 78.96
+    }
+  },
+  "isolated_ranking": {
+    "100": {
+      "scale": 100,
+      "ranking_time_sec": 0.000275,
+      "apps_per_sec": 363085.78,
+      "peak_memory_mb": 227.2,
+      "qualified": 0,
+      "review": 33,
+      "ineligible": 67
+    },
+    "1000": {
+      "scale": 1000,
+      "ranking_time_sec": 0.003143,
+      "apps_per_sec": 318129.4,
+      "peak_memory_mb": 227.2,
+      "qualified": 0,
+      "review": 331,
+      "ineligible": 669
+    },
+    "10000": {
+      "scale": 10000,
+      "ranking_time_sec": 0.074985,
+      "apps_per_sec": 133360.45,
+      "peak_memory_mb": 227.2,
+      "qualified": 0,
+      "review": 3456,
+      "ineligible": 6544
+    }
+  }
+}

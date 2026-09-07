@@ -33,6 +33,7 @@ from pdf_loader import (
     parse_statement_transactions,
     extract_application_from_pdf_text,
 )
+from concurrency import JobRunner
 
 logger = logging.getLogger(__name__)
 
@@ -233,6 +234,35 @@ def main():
         default="ranking_results.json",
         help="Path to save ranked results and audit traces",
     )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=4,
+        help="Number of concurrent workers for parallel ingestion and processing (default: 4)",
+    )
+    parser.add_argument(
+        "--sequential",
+        action="store_true",
+        help="Force sequential execution mode (disables parallel WorkerPool)",
+    )
+    parser.add_argument(
+        "--max_llm_concurrency",
+        type=int,
+        default=4,
+        help="Maximum concurrent LLM extraction requests (default: 4)",
+    )
+    parser.add_argument(
+        "--batch_size",
+        type=int,
+        default=20,
+        help="Maximum batch size per worker (default: 20)",
+    )
+    parser.add_argument(
+        "--checkpoint",
+        type=str,
+        default=None,
+        help="Path to resumable checkpoint file (e.g. .checkpoint.jsonl)",
+    )
     args = parser.parse_args()
 
     use_llm = args.use_llm_extract and not args.no_llm_extract
@@ -248,10 +278,50 @@ def main():
 
     # Mode 1: PDF Document Ingestion Mode
     if args.pdf_dir and os.path.exists(args.pdf_dir):
-        print(f"\n📂 Loading PDF Scenarios from: {args.pdf_dir}")
-        print("⚡ Mode: Direct PDF Ingestion (ground_truth.json is NOT used for input)")
         extractor = LoanDocumentExtractor(model_name=args.model) if use_llm else None
 
+        if not args.sequential:
+            print(f"\n📂 Loading PDF Scenarios from: {args.pdf_dir}")
+            print(f"⚡ Mode: Parallel Ingestion ({args.workers} workers, max queue={args.batch_size * args.workers}, LLM concurrency={args.max_llm_concurrency})")
+            runner = JobRunner(
+                num_workers=args.workers,
+                max_queue_size=max(50, args.batch_size * args.workers),
+                max_llm_concurrency=args.max_llm_concurrency,
+                batch_size=args.batch_size,
+                checkpoint_path=args.checkpoint,
+                use_llm_extract=use_llm,
+                extractor=extractor,
+                pipeline=pipeline,
+            )
+            results = runner.run_job(args.pdf_dir)
+            print_ranking_table(results)
+
+            m = results.get("metrics", {})
+            print(f"\n⚡ PARALLEL PERFORMANCE METRICS:")
+            print(f"  • Total Applications : {m.get('total_applications')}")
+            print(f"  • Completed / Failed : {m.get('completed')} / {m.get('failed')}")
+            print(f"  • Total Duration     : {m.get('total_duration')}s")
+            print(f"  • Throughput         : {m.get('throughput_apps_per_sec')} apps/sec ({m.get('throughput_docs_per_sec')} docs/sec)")
+            print(f"  • Latency (P50 / P95): {m.get('p50_latency')}s / {m.get('p95_latency')}s")
+            print(f"  • Peak Memory Usage  : {m.get('peak_memory_mb')} MB")
+
+            # Save output JSON
+            with open(args.output_json, "w") as f:
+                serializable = {
+                    "model_version": results["model_version"],
+                    "qualified_ranked": [r.model_dump() for r in results["qualified_ranked"]],
+                    "manual_review_queue": [r.model_dump() for r in results["manual_review_queue"]],
+                    "ineligible_queue": [r.model_dump() for r in results["ineligible_queue"]],
+                    "evaluation_summaries": results.get("evaluation_summaries", {}),
+                    "audit_traces": results["audit_traces"],
+                    "metrics": m,
+                }
+                json.dump(serializable, f, indent=2)
+            print(f"\n✅ Audit traces, rankings, and concurrency metrics exported to {args.output_json}")
+            return
+
+        print(f"\n📂 Loading PDF Scenarios from: {args.pdf_dir}")
+        print("⚡ Mode: Direct PDF Ingestion (Sequential Mode)")
         pdf_files_in_root = [f for f in os.listdir(args.pdf_dir) if f.lower().endswith(".pdf")]
         if pdf_files_in_root:
             scenario_folders = [(os.path.basename(args.pdf_dir.rstrip("/")), args.pdf_dir)]

@@ -1,0 +1,68 @@
+{
+  "10": {
+    "scale": 10,
+    "mode": "sequential",
+    "total_execution_time_sec": 1.5721,
+    "avg_processing_time_per_app_sec": 0.1572,
+    "applications_processed_per_sec": 6.36,
+    "documents_processed_per_sec": 35.62,
+    "total_documents": 56,
+    "successful_applications": 10,
+    "failed_applications": 0,
+    "retry_count": 0,
+    "number_of_llm_calls": 0,
+    "phase_breakdown_sec": {
+      "extraction_loading": 1.5701,
+      "statement_parsing": 0.0011,
+      "feature_and_eligibility": 0.0005,
+      "scoring": 0.0003,
+      "ranking": 0.0001
+    },
+    "latency_percentiles_sec": {
+      "p50_total": 0.1582,
+      "p95_total": 0.1997,
+      "p50_extraction": 0.1581,
+      "p95_extraction": 0.1996,
+      "p50_scoring": 0.0,
+      "p95_scoring": 0.0
+    },
+    "peak_memory_mb": 68.31,
+    "memory_delta_mb": 11.34,
+    "qualified_count": 7,
+    "review_count": 0,
+    "ineligible_count": 3
+  },
+  "100": {
+    "scale": 100,
+    "mode": "sequential",
+    "total_execution_time_sec": 15.7492,
+    "avg_processing_time_per_app_sec": 0.1575,
+    "applications_processed_per_sec": 6.35,
+    "documents_processed_per_sec": 35.37,
+    "total_documents": 557,
+    "successful_applications": 100,
+    "failed_applications": 0,
+    "retry_count": 0,
+    "number_of_llm_calls": 0,
+    "phase_breakdown_sec": {
+      "extraction_loading": 15.7294,
+      "statement_parsing": 0.0109,
+      "feature_and_eligibility": 0.0051,
+      "scoring": 0.0026,
+      "ranking": 0.0005
+    },
+    "latency_percentiles_sec": {
+      "p50_total": 0.1599,
+      "p95_total": 0.2006,
+      "p50_extraction": 0.1598,
+      "p95_extraction": 0.2005,
+      "p50_scoring": 0.0,
+      "p95_scoring": 0.0
+    },
+    "peak_memory_mb": 75.45,
+    "memory_delta_mb": 7.14,
+    "qualified_count": 71,
+    "review_count": 0,
+    "ineligible_count": 29
+  }
+}

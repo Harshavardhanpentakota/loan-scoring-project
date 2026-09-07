@@ -1,0 +1,29 @@
+{
+  "100": {
+    "scale": 100,
+    "ranking_time_sec": 0.000241,
+    "apps_per_sec": 415153.09,
+    "peak_memory_mb": 75.48,
+    "qualified": 0,
+    "review": 33,
+    "ineligible": 67
+  },
+  "1000": {
+    "scale": 1000,
+    "ranking_time_sec": 0.002639,
+    "apps_per_sec": 378859.63,
+    "peak_memory_mb": 79.27,
+    "qualified": 0,
+    "review": 331,
+    "ineligible": 669
+  },
+  "10000": {
+    "scale": 10000,
+    "ranking_time_sec": 0.033638,
+    "apps_per_sec": 297285.78,
+    "peak_memory_mb": 196.73,
+    "qualified": 0,
+    "review": 3456,
+    "ineligible": 6544
+  }
+}

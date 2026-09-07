@@ -112,7 +112,45 @@ class LoanRankingPipeline:
             validations=val_map,
         )
 
-        # 3. Parallel LLM Criticality Evaluation Summary
+        # 3. LLM Criticality Evaluation Summary & Explanations
+        summaries = self.attach_summaries_and_explanations(
+            applications=applications,
+            qualified=qualified,
+            review=review,
+            ineligible=ineligible,
+            scores_map=scores_map,
+            elig_map=elig_map,
+            feat_map=feat_map,
+        )
+
+        return {
+            "model_version": self.product_config.get("model_version"),
+            "qualified_ranked": qualified,
+            "manual_review_queue": review,
+            "ineligible_queue": ineligible,
+            "evaluation_summaries": {aid: s.model_dump() for aid, s in summaries.items()},
+            "audit_traces": {
+                app_id: {
+                    "features": [t.model_dump() for t in feat_map[app_id].traces],
+                    "scoring": scores_map[app_id].model_dump(),
+                    "eligibility": elig_map[app_id].model_dump(),
+                    "validation": val_map[app_id].model_dump(),
+                }
+                for app_id in scores_map
+            },
+        }
+
+    def attach_summaries_and_explanations(
+        self,
+        applications: List[LoanApplication],
+        qualified: List[RankedApplicant],
+        review: List[RankedApplicant],
+        ineligible: List[RankedApplicant],
+        scores_map: Dict[str, ScoringResult],
+        elig_map: Dict[str, EligibilityResult],
+        feat_map: Dict[str, DerivedFeatures],
+    ) -> Dict[str, ApplicationEvaluationSummary]:
+        """Attach criticality, LLM evaluation summaries, and grounded explanations to ranked applicants."""
         summaries: Dict[str, ApplicationEvaluationSummary] = {}
         if self.enable_evaluation_summary and self.summarizer:
             app_lookup = {a.application_id: a for a in applications}
@@ -126,6 +164,7 @@ class LoanRankingPipeline:
                         elig_map[aid],
                     ): aid
                     for aid in app_lookup
+                    if aid in feat_map and aid in scores_map and aid in elig_map
                 }
                 for future in concurrent.futures.as_completed(future_to_id):
                     aid = future_to_id[future]
@@ -144,13 +183,13 @@ class LoanRankingPipeline:
                 if aid in summaries:
                     applicant.evaluation_summary = summaries[aid]
 
-        # 4. Optional 3-bullet explanation (if requested)
+        # Optional 3-bullet explanation (if requested)
         if self.enable_explanation and self.explanation_agent:
             app_lookup = {a.application_id: a for a in applications}
             for ranked_list in (qualified, review):
                 for applicant in ranked_list:
                     app = app_lookup.get(applicant.application_id)
-                    if app:
+                    if app and app.application_id in feat_map and app.application_id in scores_map and app.application_id in elig_map:
                         bullets, status = self.explanation_agent.generate_explanation(
                             app=app,
                             features=feat_map[app.application_id],
@@ -160,22 +199,7 @@ class LoanRankingPipeline:
                         applicant.explanation = bullets
                         applicant.explanation_status = status
 
-        return {
-            "model_version": self.product_config.get("model_version"),
-            "qualified_ranked": qualified,
-            "manual_review_queue": review,
-            "ineligible_queue": ineligible,
-            "evaluation_summaries": {aid: s.model_dump() for aid, s in summaries.items()},
-            "audit_traces": {
-                app_id: {
-                    "features": [t.model_dump() for t in feat_map[app_id].traces],
-                    "scoring": scores_map[app_id].model_dump(),
-                    "eligibility": elig_map[app_id].model_dump(),
-                    "validation": val_map[app_id].model_dump(),
-                }
-                for app_id in scores_map
-            },
-        }
+        return summaries
 
 
 def print_ranking_table(results: Dict[str, Any]):

@@ -27,6 +27,11 @@ from models import (
 )
 
 
+import threading
+
+_pymupdf_lock = threading.Lock()
+
+
 def load_pdf_documents_from_directory(directory_path: str) -> List[Dict[str, Any]]:
     """Scan directory for PDF files and extract structured page-level text."""
     if not os.path.exists(directory_path):
@@ -44,7 +49,8 @@ def load_pdf_documents_from_directory(directory_path: str) -> List[Dict[str, Any
         try:
             doc = fitz.open(filepath)
             try:
-                chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
+                with _pymupdf_lock:
+                    chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
                 for chunk in chunks:
                     page_num = chunk.get("metadata", {}).get("page", 1)
                     text = chunk.get("text", "")
